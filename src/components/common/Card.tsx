@@ -1,157 +1,140 @@
 import * as React from "react";
 
-import { cva, type VariantProps } from "class-variance-authority";
-import { Loader2 } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 /**
  * ==========================================================
- * Button Variants
+ * Card Component System
  * ==========================================================
  *
- * Defines all supported visual styles and sizes.
+ * Reusable card components for the entire application.
  */
 
-const buttonVariants = cva(
-  [
-    "inline-flex items-center justify-center gap-2",
-    "whitespace-nowrap rounded-lg",
-    "font-medium",
-    "transition-all duration-200",
-    "focus-visible:outline-none",
-    "focus-visible:ring-2",
-    "focus-visible:ring-blue-500",
-    "focus-visible:ring-offset-2",
-    "disabled:pointer-events-none",
-    "disabled:opacity-50",
-    "select-none",
-  ].join(" "),
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-blue-600 text-white shadow-sm hover:bg-blue-700 active:bg-blue-800",
+/* ==========================================================
+   Card
+========================================================== */
 
-        secondary:
-          "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700",
+export type CardProps = React.HTMLAttributes<HTMLDivElement>;
 
-        outline:
-          "border border-[var(--border)] bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800",
-
-        ghost: "hover:bg-slate-100 dark:hover:bg-slate-800",
-
-        destructive: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
-
-        link: "p-0 text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
-      },
-
-      size: {
-        sm: "h-9 px-3 text-sm",
-
-        default: "h-10 px-4 py-2 text-sm",
-
-        lg: "h-11 px-6 text-base",
-
-        icon: "h-10 w-10 p-0",
-      },
-
-      fullWidth: {
-        true: "w-full",
-      },
-    },
-
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  },
-);
-
-/**
- * ==========================================================
- * Button Props
- * ==========================================================
- */
-
-export interface ButtonProps
-  extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  /**
-   * Shows a loading spinner and disables the button.
-   */
-  loading?: boolean;
-
-  /**
-   * Icon displayed before the button text.
-   */
-  leftIcon?: React.ReactNode;
-
-  /**
-   * Icon displayed after the button text.
-   */
-  rightIcon?: React.ReactNode;
-
-  /**
-   * Makes the button take the full width of its parent.
-   */
-  fullWidth?: boolean;
-}
-
-/**
- * ==========================================================
- * Button Component
- * ==========================================================
- *
- * Features
- * ----------
- * ✓ CVA Variants
- * ✓ Multiple Sizes
- * ✓ Loading State
- * ✓ Disabled State
- * ✓ Left / Right Icons
- * ✓ Accessible
- * ✓ Dark Mode
- * ✓ Reusable
- */
-
-export default function Button({
-  className,
-  variant,
-  size,
-  loading = false,
-  disabled = false,
-  leftIcon,
-  rightIcon,
-  fullWidth,
-  children,
-  type = "button",
-  ...props
-}: Readonly<ButtonProps>) {
+export function Card({ className, ...props }: CardProps) {
   return (
-    <button
-      type={type}
-      disabled={disabled || loading}
+    <div
       className={cn(
-        buttonVariants({
-          variant,
-          size,
-          fullWidth,
-        }),
+        "rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm",
+        "transition-all duration-300",
+        "dark:border-slate-800 dark:bg-slate-900 dark:text-slate-50",
         className,
       )}
       {...props}
-    >
-      {loading ? (
-        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-      ) : (
-        leftIcon
+    />
+  );
+}
+
+/* ==========================================================
+   Card Header
+========================================================== */
+
+export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>;
+
+export function CardHeader({
+  className,
+  ...props
+}: CardHeaderProps) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col space-y-1.5 p-6",
+        className,
       )}
+      {...props}
+    />
+  );
+}
 
-      {children}
+/* ==========================================================
+   Card Title
+========================================================== */
 
-      {!loading && rightIcon}
-    </button>
+export type CardTitleProps =
+  React.HTMLAttributes<HTMLHeadingElement>;
+
+export function CardTitle({
+  className,
+  ...props
+}: CardTitleProps) {
+  return (
+    <h3
+      className={cn(
+        "text-xl font-semibold leading-none tracking-tight",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+/* ==========================================================
+   Card Description
+========================================================== */
+
+export type CardDescriptionProps =
+  React.HTMLAttributes<HTMLParagraphElement>;
+
+export function CardDescription({
+  className,
+  ...props
+}: CardDescriptionProps) {
+  return (
+    <p
+      className={cn(
+        "text-sm text-slate-600 dark:text-slate-400",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+/* ==========================================================
+   Card Content
+========================================================== */
+
+export type CardContentProps =
+  React.HTMLAttributes<HTMLDivElement>;
+
+export function CardContent({
+  className,
+  ...props
+}: CardContentProps) {
+  return (
+    <div
+      className={cn(
+        "p-6 pt-0",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+/* ==========================================================
+   Card Footer
+========================================================== */
+
+export type CardFooterProps =
+  React.HTMLAttributes<HTMLDivElement>;
+
+export function CardFooter({
+  className,
+  ...props
+}: CardFooterProps) {
+  return (
+    <div
+      className={cn(
+        "flex items-center p-6 pt-0",
+        className,
+      )}
+      {...props}
+    />
   );
 }
