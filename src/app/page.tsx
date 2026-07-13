@@ -1,3 +1,4 @@
+import Button from "@/components/common/Button";
 import Container from "@/components/layout/Container";
 import { SITE_CONFIG } from "@/constants/site";
 
@@ -19,13 +20,16 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button className="rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700">
+            <Button size="lg">
               Explore Blogs
-            </button>
+            </Button>
 
-            <button className="rounded-lg border border-slate-300 px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900">
+            <Button
+              variant="outline"
+              size="lg"
+            >
               Dashboard
-            </button>
+            </Button>
           </div>
         </section>
       </Container>
