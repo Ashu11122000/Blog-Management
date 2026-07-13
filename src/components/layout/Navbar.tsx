@@ -13,7 +13,7 @@ import Button from "@/components/common/Button";
 import Container from "@/components/layout/Container";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 
-import { AUTH_NAVIGATION, MAIN_NAVIGATION } from "@/constants/navigation";
+import { MAIN_NAVIGATION } from "@/constants/navigation";
 
 import { SITE_CONFIG } from "@/constants/site";
 
@@ -126,17 +126,9 @@ export default function Navbar() {
               Desktop Actions
           ====================================================== */}
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <ThemeToggle />
-
-            {AUTH_NAVIGATION.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <Button variant={item.primary ? "default" : "outline"}>
-                  {item.label}
-                </Button>
-              </Link>
-            ))}
-          </div>
+ <div className="hidden items-center lg:flex">
+  <ThemeToggle />
+</div>
 
           {/* ======================================================
               Mobile Actions
@@ -204,19 +196,6 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-
-              <div className="mt-4 border-t border-(--border) pt-4">
-                {AUTH_NAVIGATION.map((item) => (
-                  <Link key={item.href} href={item.href} className="block"  onClick={() => setMobileMenuOpen(false)}>
-                    <Button
-                      fullWidth
-                      variant={item.primary ? "default" : "outline"}
-                    >
-                      {item.label}
-                    </Button>
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         )}

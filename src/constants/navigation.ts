@@ -108,16 +108,3 @@ export const FOOTER_NAVIGATION: NavigationItem[] = [
   },
 ];
 
-/**
- * ==========================================================
- * Authentication Navigation
- * ==========================================================
- */
-
-export const AUTH_NAVIGATION: NavigationItem[] = [
-  {
-    label: "Login",
-    href: "/login",
-    primary: true,
-  },
-];

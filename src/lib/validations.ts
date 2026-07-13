@@ -31,3 +31,22 @@ export const contactSchema = z.object({
 });
 
 export type ContactSchema = z.infer<typeof contactSchema>;
+
+/**
+ * ==========================================================
+ * Login Form Validation
+ * ==========================================================
+ */
+
+export const loginSchema = z.object({
+  email: z
+    .email("Please enter a valid email address.")
+    .max(255, "Email cannot exceed 255 characters."),
+
+  password: z
+    .string()
+    .min(8, "Password must contain at least 8 characters.")
+    .max(100, "Password cannot exceed 100 characters."),
+});
+
+export type LoginSchema = z.infer<typeof loginSchema>;
