@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 
@@ -39,11 +40,14 @@ const buttonVariants = cva(
         outline:
           "border border-[var(--border)] bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800",
 
-        ghost: "hover:bg-slate-100 dark:hover:bg-slate-800",
+        ghost:
+          "hover:bg-slate-100 dark:hover:bg-slate-800",
 
-        destructive: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+        destructive:
+          "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
 
-        link: "p-0 text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
+        link:
+          "p-0 text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
       },
 
       size: {
@@ -65,7 +69,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 /**
@@ -75,9 +79,14 @@ const buttonVariants = cva(
  */
 
 export interface ButtonProps
-  extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  /**
+   * Render the child element instead of a button.
+   * Useful for Next.js Link.
+   */
+  asChild?: boolean;
+
   /**
    * Shows a loading spinner and disables the button.
    */
@@ -111,6 +120,7 @@ export interface ButtonProps
  * ✓ Loading State
  * ✓ Disabled State
  * ✓ Left / Right Icons
+ * ✓ asChild Support
  * ✓ Accessible
  * ✓ Dark Mode
  * ✓ Reusable
@@ -125,26 +135,32 @@ export default function Button({
   leftIcon,
   rightIcon,
   fullWidth,
+  asChild = false,
   children,
   type = "button",
   ...props
 }: Readonly<ButtonProps>) {
+  const Component = asChild ? Slot : "button";
+
   return (
-    <button
-      type={type}
-      disabled={disabled || loading}
+    <Component
+      type={!asChild ? type : undefined}
+      disabled={!asChild ? disabled || loading : undefined}
       className={cn(
         buttonVariants({
           variant,
           size,
           fullWidth,
         }),
-        className,
+        className
       )}
       {...props}
     >
       {loading ? (
-        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+        <Loader2
+          className="h-4 w-4 animate-spin"
+          aria-hidden="true"
+        />
       ) : (
         leftIcon
       )}
@@ -152,6 +168,14 @@ export default function Button({
       {children}
 
       {!loading && rightIcon}
-    </button>
+    </Component>
   );
 }
+
+/**
+ * ==========================================================
+ * Export Variants
+ * ==========================================================
+ */
+
+export { buttonVariants };
