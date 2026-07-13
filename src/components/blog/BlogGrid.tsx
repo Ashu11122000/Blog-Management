@@ -3,11 +3,13 @@ import EmptyState from "@/components/common/EmptyState";
 
 import type { Blog } from "@/types/blog";
 
-type BlogGridProps = {
+interface BlogGridProps {
   blogs: Blog[];
-};
+}
 
-export default function BlogGrid({ blogs }: Readonly<BlogGridProps>) {
+export default function BlogGrid({
+  blogs,
+}: Readonly<BlogGridProps>) {
   if (blogs.length === 0) {
     return (
       <EmptyState
@@ -23,7 +25,10 @@ export default function BlogGrid({ blogs }: Readonly<BlogGridProps>) {
       className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3"
     >
       {blogs.map((blog) => (
-        <BlogCard key={blog.id} blog={blog} />
+        <BlogCard
+          key={blog.id}
+          blog={blog}
+        />
       ))}
     </section>
   );
