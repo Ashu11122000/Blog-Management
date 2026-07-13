@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+// import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 import { usePathname } from "next/navigation";
 
@@ -129,7 +129,6 @@ export default function Navbar() {
           ====================================================== */}
 
  <div className="hidden items-center lg:flex">
-   <LanguageSwitcher />
   <ThemeToggle />
 </div>
 
@@ -138,7 +137,6 @@ export default function Navbar() {
           ====================================================== */}
 
           <div className="flex items-center gap-2 lg:hidden">
-             <LanguageSwitcher />
             <ThemeToggle />
 
             <Button
