@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import BlogGrid from "@/components/blog/BlogGrid";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import SearchBar from "@/components/blog/SearchBar";
-
 import Badge from "@/components/common/Badge";
 import Container from "@/components/layout/Container";
 
@@ -16,12 +15,12 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  const featuredBlogs = blogs.filter(
-    (blog) => blog.featured && blog.published,
-  );
-
   const publishedBlogs = blogs.filter(
     (blog) => blog.published,
+  );
+
+  const featuredBlogs = publishedBlogs.filter(
+    (blog) => blog.featured,
   );
 
   return (
@@ -37,14 +36,17 @@ export default function BlogPage() {
             Blog
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-base text-slate-600 dark:text-slate-400 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
             Discover tutorials, guides, and insights on
             Next.js, React, TypeScript, Tailwind CSS,
             and modern web development.
           </p>
 
           <div className="mx-auto mt-10 max-w-xl">
-            <SearchBar />
+            <SearchBar
+              items={publishedBlogs}
+              placeholder="Search articles..."
+            />
           </div>
         </section>
 
