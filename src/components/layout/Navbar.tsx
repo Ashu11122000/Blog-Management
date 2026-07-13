@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+
 import { usePathname } from "next/navigation";
 
 import { Menu, PenSquare, X } from "lucide-react";
 
-import Button from "@/components/common/Button";
+import Button from "@/components/common/Button"; <ThemeToggle />
 
 import Container from "@/components/layout/Container";
 import ThemeToggle from "@/components/layout/ThemeToggle";
@@ -127,6 +129,7 @@ export default function Navbar() {
           ====================================================== */}
 
  <div className="hidden items-center lg:flex">
+   <LanguageSwitcher />
   <ThemeToggle />
 </div>
 
@@ -135,6 +138,7 @@ export default function Navbar() {
           ====================================================== */}
 
           <div className="flex items-center gap-2 lg:hidden">
+             <LanguageSwitcher />
             <ThemeToggle />
 
             <Button

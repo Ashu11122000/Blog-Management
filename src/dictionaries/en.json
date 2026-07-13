@@ -1,0 +1,25 @@
+{
+  "common": {
+    "siteName": "Blog Management",
+    "readMore": "Read More",
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "dashboard": "Dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "posts": "Posts",
+    "categories": "Categories",
+    "gallery": "Gallery",
+    "profile": "Profile",
+    "settings": "Settings"
+  }
+}

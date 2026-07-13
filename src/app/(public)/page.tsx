@@ -1,22 +1,32 @@
+import type { Metadata } from "next";
+
 import ActivityCard from "@/components/dashboard/ActivityCard";
 import RecentPosts from "@/components/dashboard/RecentPosts";
 import StatsCard from "@/components/dashboard/StatsCard";
 
 import { dashboardStats } from "@/data/dashboard";
 
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description:
+    "Manage your blog posts, categories, gallery, and account settings.",
+};
+
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      {/* Welcome */}
+    <main className="space-y-8">
+      {/* Welcome Section */}
 
-      <section>
-        <h2 className="text-3xl font-bold tracking-tight">
+      <section aria-labelledby="dashboard-heading">
+        <h1
+          id="dashboard-heading"
+          className="text-3xl font-bold tracking-tight"
+        >
           Welcome back 👋
-        </h2>
+        </h1>
 
         <p className="mt-2 text-muted-foreground">
-          Here&apos;s an overview of your blog performance and
-          recent activity.
+          Here&apos;s an overview of your blog performance and recent activity.
         </p>
       </section>
 
@@ -45,15 +55,25 @@ export default function DashboardPage() {
 
       {/* Dashboard Content */}
 
-      <section className="grid gap-6 xl:grid-cols-3">
+      <section
+        aria-labelledby="dashboard-content"
+        className="grid gap-6 xl:grid-cols-3"
+      >
+        <h2
+          id="dashboard-content"
+          className="sr-only"
+        >
+          Dashboard Content
+        </h2>
+
         <div className="xl:col-span-2">
           <RecentPosts />
         </div>
 
-        <div>
+        <aside>
           <ActivityCard />
-        </div>
+        </aside>
       </section>
-    </div>
+    </main>
   );
 }
