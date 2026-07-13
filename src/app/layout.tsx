@@ -51,10 +51,12 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -72,6 +74,9 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
+
+            {/* Parallel Route Slot */}
+            {modal}
 
             {/* Global Footer */}
             <footer>
