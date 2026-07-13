@@ -1,9 +1,9 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { Monitor, Moon, Sun } from "lucide-react";
 
 import { useTheme } from "@/hooks/useTheme";
-
 import { cn } from "@/lib/utils";
 
 /**
@@ -18,12 +18,19 @@ import { cn } from "@/lib/utils";
  * ✓ System Theme
  * ✓ Accessible
  * ✓ Dark Mode
+ * ✓ Hydration Safe
  * ✓ Next.js 16 Compatible
  * ✓ React 19 Compatible
  */
 
 export default function ThemeToggle() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const themes = [
     {
@@ -43,6 +50,22 @@ export default function ThemeToggle() {
     },
   ] as const;
 
+  // Prevent hydration mismatch caused by next-themes
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "inline-flex items-center overflow-hidden rounded-xl",
+          "border border-(--border)",
+          "bg-(--card)",
+          "shadow-sm"
+        )}
+      >
+        <div className="h-10 w-30" />
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -53,10 +76,7 @@ export default function ThemeToggle() {
       )}
     >
       {themes.map(({ value, label, icon: Icon }) => {
-        const active =
-          value === "system"
-            ? theme === "system"
-            : resolvedTheme === value;
+        const active = theme === value;
 
         return (
           <button
