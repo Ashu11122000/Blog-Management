@@ -27,7 +27,16 @@ export default function GalleryGrid({
   return (
     <section
       aria-label="Gallery"
-      className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
+      className="
+        grid
+        grid-cols-1
+        gap-6
+        sm:grid-cols-2
+        lg:gap-7
+        xl:grid-cols-3
+        2xl:gap-8
+        items-stretch
+      "
     >
       {displayedImages.map((image, index) => (
         <GalleryCard

@@ -4,10 +4,11 @@ import { cn } from "@/lib/utils";
 
 /**
  * ==========================================================
- * Card Component System
+ * Premium Card Component System
  * ==========================================================
  *
- * Reusable card components for the entire application.
+ * Reusable card components with premium spacing,
+ * typography and visual polish.
  */
 
 /* ==========================================================
@@ -20,9 +21,13 @@ export function Card({ className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-slate-200 bg-white text-slate-950 shadow-sm",
-        "transition-all duration-300",
-        "dark:border-slate-800 dark:bg-slate-900 dark:text-slate-50",
+        "rounded-2xl",
+        "border border-(--border)",
+        "bg-(--card) text-(--card-foreground)",
+        "shadow-sm",
+        "transition-all duration-300 ease-out",
+        "hover:-translate-y-0.5",
+        "hover:shadow-lg",
         className,
       )}
       {...props}
@@ -34,7 +39,8 @@ export function Card({ className, ...props }: CardProps) {
    Card Header
 ========================================================== */
 
-export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>;
+export type CardHeaderProps =
+  React.HTMLAttributes<HTMLDivElement>;
 
 export function CardHeader({
   className,
@@ -43,7 +49,9 @@ export function CardHeader({
   return (
     <div
       className={cn(
-        "flex flex-col space-y-1.5 p-6",
+        "flex flex-col",
+        "space-y-2",
+        "p-6",
         className,
       )}
       {...props}
@@ -65,7 +73,8 @@ export function CardTitle({
   return (
     <h3
       className={cn(
-        "text-xl font-semibold leading-none tracking-tight",
+        "text-lg font-semibold",
+        "leading-tight tracking-tight",
         className,
       )}
       {...props}
@@ -87,7 +96,8 @@ export function CardDescription({
   return (
     <p
       className={cn(
-        "text-sm text-slate-600 dark:text-slate-400",
+        "text-sm leading-6",
+        "text-muted-foreground",
         className,
       )}
       {...props}
@@ -109,7 +119,7 @@ export function CardContent({
   return (
     <div
       className={cn(
-        "p-6 pt-0",
+        "px-6 pb-6",
         className,
       )}
       {...props}
@@ -131,7 +141,9 @@ export function CardFooter({
   return (
     <div
       className={cn(
-        "flex items-center p-6 pt-0",
+        "flex items-center justify-between",
+        "gap-4",
+        "px-6 pb-6",
         className,
       )}
       {...props}

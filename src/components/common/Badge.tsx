@@ -13,32 +13,39 @@ import { cn } from "@/lib/utils";
 const badgeVariants = cva(
   [
     "inline-flex items-center justify-center",
+    "min-h-6",
     "rounded-full",
-    "border",
-    "px-2.5 py-0.5",
-    "text-xs font-semibold",
-    "transition-colors duration-200",
-    "select-none",
+    "px-3 py-1",
+    "text-xs font-medium",
+    "leading-none",
     "whitespace-nowrap",
+    "select-none",
+    "transition-all duration-200 ease-out",
+    "ring-1 ring-inset",
   ].join(" "),
   {
     variants: {
       variant: {
-        default: "border-transparent bg-blue-600 text-white",
+        default:
+          "bg-blue-600 text-white ring-blue-600/20 hover:bg-blue-500",
 
         secondary:
-          "border-transparent bg-slate-200 text-slate-900 dark:bg-slate-700 dark:text-slate-100",
+          "bg-slate-100 text-slate-700 ring-slate-200 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700 dark:hover:bg-slate-700",
 
-        success: "border-transparent bg-emerald-600 text-white",
+        success:
+          "bg-emerald-600 text-white ring-emerald-600/20 hover:bg-emerald-500",
 
-        warning: "border-transparent bg-amber-500 text-white",
+        warning:
+          "bg-amber-500 text-white ring-amber-500/20 hover:bg-amber-400",
 
-        destructive: "border-transparent bg-red-600 text-white",
+        destructive:
+          "bg-red-600 text-white ring-red-600/20 hover:bg-red-500",
 
         outline:
-          "border-[var(--border)] bg-transparent text-[var(--foreground)]",
+          "bg-transparent text-[var(--foreground)] ring-[var(--border)] hover:bg-[var(--muted)]",
 
-        ghost: "border-transparent bg-transparent text-[var(--foreground)]",
+        ghost:
+          "bg-transparent text-[var(--foreground)] ring-transparent hover:bg-[var(--muted)]",
       },
     },
 
@@ -55,21 +62,13 @@ const badgeVariants = cva(
  */
 
 export interface BadgeProps
-  extends
-    React.HTMLAttributes<HTMLSpanElement>,
+  extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeVariants> {}
 
 /**
  * ==========================================================
  * Badge Component
  * ==========================================================
- *
- * Features
- * ----------
- * ✓ CVA Variants
- * ✓ Dark Mode
- * ✓ Accessible
- * ✓ Reusable
  */
 
 export default function Badge({

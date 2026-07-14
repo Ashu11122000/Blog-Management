@@ -21,14 +21,14 @@ export interface TextareaProps
   error?: string;
 
   /**
-   * Helper text displayed below the textarea.
+   * Helper text displayed below textarea.
    */
   helperText?: string;
 }
 
 /**
  * ==========================================================
- * Textarea Component
+ * Premium Textarea Component
  * ==========================================================
  *
  * Features
@@ -40,6 +40,7 @@ export interface TextareaProps
  * ✓ Helper Text
  * ✓ Accessible
  * ✓ Dark Mode
+ * ✓ Premium UI
  */
 
 const Textarea = React.forwardRef<
@@ -58,22 +59,24 @@ const Textarea = React.forwardRef<
       rows = 5,
       ...props
     },
-    ref
+    ref,
   ) => {
     const generatedId = React.useId();
     const textareaId = id ?? generatedId;
 
     return (
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-2.5">
         {label && (
           <label
             htmlFor={textareaId}
-            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="text-sm font-medium text-(--foreground)"
           >
             {label}
 
             {required && (
-              <span className="ml-1 text-red-500">*</span>
+              <span className="ml-1 text-red-500">
+                *
+              </span>
             )}
           </label>
         )}
@@ -89,29 +92,39 @@ const Textarea = React.forwardRef<
             error
               ? `${textareaId}-error`
               : helperText
-              ? `${textareaId}-helper`
-              : undefined
+                ? `${textareaId}-helper`
+                : undefined
           }
           className={cn(
-            "flex w-full rounded-lg border",
-            "border-(--border)",
+            "flex w-full",
+            "min-h-28",
+            "rounded-xl",
+            "border border-(--border)",
             "bg-(--background)",
-            "text-(--foreground)",
-            "px-3 py-2 text-sm",
-            "placeholder:text-slate-400",
-            "transition-colors duration-200",
+            "px-4 py-3",
+            "text-sm text-(--foreground)",
+            "placeholder:text-muted-foreground",
+
+            "transition-all duration-300 ease-out",
+
             "focus:outline-none",
             "focus:ring-2",
-            "focus:ring-blue-500",
+            "focus:ring-blue-500/30",
             "focus:border-blue-500",
+
             "disabled:cursor-not-allowed",
             "disabled:opacity-50",
+
             "resize-y",
 
             error &&
-              "border-red-500 focus:border-red-500 focus:ring-red-500",
+              [
+                "border-red-500",
+                "focus:border-red-500",
+                "focus:ring-red-500/30",
+              ].join(" "),
 
-            className
+            className,
           )}
           {...props}
         />
@@ -119,7 +132,7 @@ const Textarea = React.forwardRef<
         {helperText && !error && (
           <p
             id={`${textareaId}-helper`}
-            className="text-sm text-slate-500 dark:text-slate-400"
+            className="text-sm text-muted-foreground"
           >
             {helperText}
           </p>
@@ -135,7 +148,7 @@ const Textarea = React.forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 
 Textarea.displayName = "Textarea";

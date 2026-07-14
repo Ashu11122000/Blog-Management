@@ -17,10 +17,11 @@ import { cn } from "@/lib/utils";
  * ✓ Dark Theme
  * ✓ System Theme
  * ✓ Accessible
- * ✓ Dark Mode
  * ✓ Hydration Safe
- * ✓ Next.js 16 Compatible
+ * ✓ Glassmorphism UI
+ * ✓ Premium Micro Interactions
  * ✓ React 19 Compatible
+ * ✓ Next.js 16 Compatible
  */
 
 export default function ThemeToggle() {
@@ -50,18 +51,22 @@ export default function ThemeToggle() {
     },
   ] as const;
 
-  // Prevent hydration mismatch caused by next-themes
+  /**
+   * Prevent hydration mismatch caused by next-themes.
+   */
   if (!mounted) {
     return (
       <div
         className={cn(
-          "inline-flex items-center overflow-hidden rounded-xl",
-          "border border-(--border)",
-          "bg-(--card)",
-          "shadow-sm"
+          "inline-flex items-center rounded-2xl",
+          "border border-border/60",
+          "bg-background/70",
+          "p-1",
+          "backdrop-blur-xl",
+          "shadow-xl shadow-black/5 dark:shadow-black/20"
         )}
       >
-        <div className="h-10 w-30" />
+        <div className="h-11 w-[137px] animate-pulse rounded-xl bg-muted/40" />
       </div>
     );
   }
@@ -69,10 +74,14 @@ export default function ThemeToggle() {
   return (
     <div
       className={cn(
-        "inline-flex items-center overflow-hidden rounded-xl",
-        "border border-(--border)",
-        "bg-(--card)",
-        "shadow-sm"
+        "inline-flex items-center gap-1 rounded-2xl",
+        "border border-border/60",
+        "bg-background/70",
+        "p-1",
+        "backdrop-blur-xl",
+        "shadow-xl shadow-black/5",
+        "transition-all duration-300",
+        "dark:bg-card/70 dark:shadow-black/25"
       )}
     >
       {themes.map(({ value, label, icon: Icon }) => {
@@ -84,15 +93,51 @@ export default function ThemeToggle() {
             type="button"
             aria-label={label}
             aria-pressed={active}
+            title={label}
             onClick={() => setTheme(value)}
             className={cn(
-              "flex h-10 w-10 items-center justify-center transition-all duration-200",
+              "relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl",
+              "transition-all duration-300 ease-out",
+              "focus-visible:outline-none",
+              "focus-visible:ring-2",
+              "focus-visible:ring-blue-500/40",
+              "focus-visible:ring-offset-2",
+              "focus-visible:ring-offset-background",
               active
-                ? "bg-blue-600 text-white"
-                : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                ? [
+                    "scale-[1.03]",
+                    "bg-gradient-to-br",
+                    "from-blue-600",
+                    "via-blue-600",
+                    "to-indigo-600",
+                    "text-white",
+                    "shadow-lg",
+                    "shadow-blue-500/30",
+                  ]
+                : [
+                    "text-muted-foreground",
+                    "hover:bg-muted/70",
+                    "hover:text-foreground",
+                    "hover:scale-[1.02]",
+                    "active:scale-95",
+                  ]
             )}
           >
-            <Icon className="h-5 w-5" />
+            {active && (
+              <span
+                className={cn(
+                  "absolute inset-0 rounded-xl",
+                  "bg-gradient-to-br from-white/10 to-transparent"
+                )}
+              />
+            )}
+
+            <Icon
+              className={cn(
+                "relative z-10 h-5 w-5 transition-all duration-300",
+                active ? "scale-110" : "scale-100"
+              )}
+            />
           </button>
         );
       })}

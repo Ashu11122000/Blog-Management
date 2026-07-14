@@ -1,37 +1,40 @@
+import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+
+import { routing } from "@/i18n/routing";
 
 /**
  * ==========================================================
- * Middleware
+ * Internationalization Middleware
  * ==========================================================
  *
- * Global middleware for the Blog Management System.
- *
- * Current Responsibilities
- * ------------------------
- * ✓ Allow all public routes
- * ✓ Apply common security headers
- * ✓ Centralized request handling
+ * Responsibilities
+ * ----------------
+ * ✓ Locale detection
+ * ✓ Redirect "/" → "/en"
+ * ✓ Locale-based routing
+ * ✓ Security headers
  *
  * Future Enhancements
  * -------------------
- * • Authentication & Authorization
- * • Internationalization (next-intl)
+ * • Authentication
+ * • Authorization
  * • Analytics
- * • URL rewrites
- * • Redirect rules
  * • Rate limiting
  * • Maintenance mode
+ * • URL rewrites
  */
+
+const intlMiddleware = createMiddleware(routing);
 
 export function middleware(request: NextRequest) {
   /**
    * ----------------------------------------------------------
-   * Continue Request
+   * next-intl Middleware
    * ----------------------------------------------------------
    */
 
-  const response = NextResponse.next();
+  const response = intlMiddleware(request);
 
   /**
    * ----------------------------------------------------------
@@ -40,7 +43,12 @@ export function middleware(request: NextRequest) {
    */
 
   response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("X-Content-Type-Options", "nosniff");
+
+  response.headers.set(
+    "X-Content-Type-Options",
+    "nosniff"
+  );
+
   response.headers.set(
     "Referrer-Policy",
     "strict-origin-when-cross-origin"
@@ -51,6 +59,26 @@ export function middleware(request: NextRequest) {
     "camera=(), microphone=(), geolocation=()"
   );
 
+  response.headers.set(
+    "X-DNS-Prefetch-Control",
+    "on"
+  );
+
+  response.headers.set(
+    "X-Download-Options",
+    "noopen"
+  );
+
+  response.headers.set(
+    "X-Permitted-Cross-Domain-Policies",
+    "none"
+  );
+
+  response.headers.set(
+    "Cross-Origin-Opener-Policy",
+    "same-origin"
+  );
+
   return response;
 }
 
@@ -59,16 +87,22 @@ export function middleware(request: NextRequest) {
  * Matcher
  * ==========================================================
  *
- * Run middleware for all application routes while excluding:
+ * Apply middleware to:
+ * ✓ Root route
+ * ✓ Locale routes
+ * ✓ All application pages
+ *
+ * Exclude:
  * - API routes
  * - Next.js internals
  * - Static assets
- * - Favicon
  * - Images
+ * - Favicon
  */
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|images|.*\\..*).*)",
+    "/",
+    "/((?!api|_next|_vercel|.*\\..*).*)",
   ],
 };

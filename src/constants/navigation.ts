@@ -87,23 +87,3 @@ export const DASHBOARD_NAVIGATION: NavigationItem[] = [
   },
 ];
 
-/**
- * ==========================================================
- * Footer Navigation
- * ==========================================================
- */
-
-export const FOOTER_NAVIGATION: NavigationItem[] = [
-  {
-    key: "privacyPolicy",
-    href: "/privacy",
-  },
-  {
-    key: "termsOfService",
-    href: "/terms",
-  },
-  {
-    key: "contact",
-    href: "/contact",
-  },
-];

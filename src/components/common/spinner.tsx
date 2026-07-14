@@ -6,23 +6,33 @@ import { cn } from "@/lib/utils";
 
 /**
  * ==========================================================
- * Spinner Variants
+ * Premium Spinner Variants
  * ==========================================================
  */
 
 const spinnerVariants = cva(
-  "animate-spin rounded-full border-2 border-current border-t-transparent",
+  [
+    "animate-spin",
+    "rounded-full",
+    "border-2",
+    "border-current",
+    "border-t-transparent",
+    "transition-colors duration-300",
+  ].join(" "),
   {
     variants: {
       size: {
         sm: "h-4 w-4",
+
         default: "h-6 w-6",
+
         lg: "h-8 w-8",
       },
 
       variant: {
         primary: "text-blue-600",
-        secondary: "text-slate-500 dark:text-slate-400",
+
+        secondary: "text-muted-foreground",
       },
     },
 
@@ -40,8 +50,7 @@ const spinnerVariants = cva(
  */
 
 export interface SpinnerProps
-  extends
-    React.HTMLAttributes<HTMLDivElement>,
+  extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof spinnerVariants> {
   /**
    * Accessible loading label.
@@ -51,7 +60,7 @@ export interface SpinnerProps
 
 /**
  * ==========================================================
- * Spinner Component
+ * Premium Spinner Component
  * ==========================================================
  *
  * Features
@@ -61,6 +70,7 @@ export interface SpinnerProps
  * ✓ Accessible
  * ✓ Dark Mode
  * ✓ Reusable
+ * ✓ Premium UI
  */
 
 export default function Spinner({
