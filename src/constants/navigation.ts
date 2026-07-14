@@ -6,9 +6,9 @@
 
 export interface NavigationItem {
   /**
-   * Navigation label.
+   * Translation key from messages/*.json
    */
-  label: string;
+  key: string;
 
   /**
    * Route path.
@@ -29,27 +29,27 @@ export interface NavigationItem {
 
 export const MAIN_NAVIGATION: NavigationItem[] = [
   {
-    label: "Home",
+    key: "home",
     href: "/",
   },
   {
-    label: "Blog",
+    key: "blog",
     href: "/blog",
   },
   {
-    label: "Gallery",
+    key: "gallery",
     href: "/gallery",
   },
   {
-    label: "Search",
+    key: "search",
     href: "/search",
   },
   {
-    label: "About",
+    key: "about",
     href: "/about",
   },
   {
-    label: "Contact",
+    key: "contact",
     href: "/contact",
   },
 ];
@@ -62,27 +62,27 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
 
 export const DASHBOARD_NAVIGATION: NavigationItem[] = [
   {
-    label: "Dashboard",
+    key: "dashboard",
     href: "/dashboard",
   },
   {
-    label: "Posts",
+    key: "posts",
     href: "/dashboard/posts",
   },
   {
-    label: "Categories",
+    key: "categories",
     href: "/dashboard/categories",
   },
   {
-    label: "Gallery",
+    key: "gallery",
     href: "/dashboard/gallery",
   },
   {
-    label: "Profile",
+    key: "profile",
     href: "/dashboard/profile",
   },
   {
-    label: "Settings",
+    key: "settings",
     href: "/dashboard/settings",
   },
 ];
@@ -95,16 +95,15 @@ export const DASHBOARD_NAVIGATION: NavigationItem[] = [
 
 export const FOOTER_NAVIGATION: NavigationItem[] = [
   {
-    label: "Privacy Policy",
+    key: "privacyPolicy",
     href: "/privacy",
   },
   {
-    label: "Terms of Service",
+    key: "termsOfService",
     href: "/terms",
   },
   {
-    label: "Contact",
+    key: "contact",
     href: "/contact",
   },
 ];
-

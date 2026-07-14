@@ -1,76 +1,24 @@
 {
-  "Common": {
-    "readMore": "Read More",
-    "search": "Search",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete",
-    "loading": "Loading...",
-    "viewAll": "View All",
-    "back": "Back"
-  },
-
   "Navigation": {
     "home": "Home",
-    "about": "About",
     "blog": "Blog",
     "gallery": "Gallery",
+    "search": "Search",
+    "about": "About",
     "contact": "Contact",
     "dashboard": "Dashboard",
-    "search": "Search",
-    "login": "Login"
-  },
-
-  "Home": {
-    "title": "Modern Blog Management System",
-    "subtitle": "A production-ready blog platform built with Next.js App Router.",
-    "cta": "Explore Blogs"
-  },
-
-  "About": {
-    "title": "About Us",
-    "description": "Learn more about our blog and our mission."
-  },
-
-  "Blog": {
-    "title": "Latest Blogs",
-    "relatedPosts": "Related Posts",
-    "author": "Author",
-    "publishedOn": "Published On",
+    "posts": "Posts",
     "categories": "Categories",
-    "tags": "Tags"
-  },
-
-  "Gallery": {
-    "title": "Gallery",
-    "description": "Browse our collection of images."
-  },
-
-  "Contact": {
-    "title": "Contact Us",
-    "name": "Name",
-    "email": "Email",
-    "subject": "Subject",
-    "message": "Message",
-    "send": "Send Message"
+    "profile": "Profile",
+    "settings": "Settings",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
 
   "Dashboard": {
-    "title": "Dashboard",
-    "welcome": "Welcome back 👋",
-    "overview": "Here's an overview of your blog performance and recent activity.",
-    "posts": "Posts",
-    "categories": "Categories",
-    "gallery": "Gallery",
-    "profile": "Profile",
-    "settings": "Settings",
-    "recentPosts": "Recent Posts",
-    "activity": "Recent Activity"
-  },
-
-  "Footer": {
-    "copyright": "© 2026 Blog Management System. All rights reserved."
+    "title": "Welcome back 👋",
+    "description": "Here's an overview of your blog performance and recent activity.",
+    "statistics": "Dashboard Statistics",
+    "content": "Dashboard Content"
   }
 }

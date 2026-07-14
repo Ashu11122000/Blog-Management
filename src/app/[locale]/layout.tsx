@@ -1,14 +1,12 @@
 import { notFound } from "next/navigation";
 
-import {
-  NextIntlClientProvider,
-  hasLocale,
-} from "next-intl";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 
-import {
-  getMessages,
-  setRequestLocale
-} from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
+
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 import { routing } from "@/i18n/routing";
 
@@ -35,14 +33,24 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Required for next-intl App Router
   setRequestLocale(locale);
 
   const messages = await getMessages();
 
   return (
     <NextIntlClientProvider messages={messages}>
-      {children}
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Navbar />
+
+        <main className="min-h-screen">{children}</main>
+
+        <Footer />
+      </ThemeProvider>
     </NextIntlClientProvider>
   );
 }
