@@ -1,15 +1,20 @@
+"use client";
+
 import Container from "@/components/layout/Container";
 import Skeleton from "@/components/common/Skeleton";
 
 export default function BlogLoading() {
   return (
-    <main className="py-16 lg:py-24">
-      <Container>
-        {/* Page Header */}
-        <section className="mb-16 flex flex-col items-center text-center">
-          <Skeleton className="mb-4 h-8 w-32 rounded-full" />
+    <main className="relative overflow-hidden py-16 lg:py-24">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900" />
 
-          <Skeleton className="h-12 w-80 max-w-full rounded-lg" />
+      <Container>
+        {/* Header */}
+        <section className="mb-16 flex flex-col items-center text-center">
+          <Skeleton className="mb-5 h-8 w-32 rounded-full" />
+
+          <Skeleton className="h-12 w-[28rem] max-w-full rounded-xl" />
 
           <Skeleton className="mt-6 h-5 w-full max-w-2xl rounded-lg" />
 
@@ -21,33 +26,39 @@ export default function BlogLoading() {
           {Array.from({ length: 6 }).map((_, index) => (
             <article
               key={index}
-              className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800"
+              className="overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 shadow-lg backdrop-blur-sm transition-all duration-300 dark:border-slate-800/70 dark:bg-slate-900/70"
             >
-              <Skeleton className="aspect-video w-full" />
+              {/* Image */}
+              <Skeleton className="aspect-video w-full rounded-none" />
 
-              <div className="space-y-4 p-6">
+              <div className="space-y-5 p-6">
+                {/* Category */}
                 <Skeleton className="h-6 w-24 rounded-full" />
 
-                <Skeleton className="h-8 w-full rounded-lg" />
+                {/* Title */}
+                <Skeleton className="h-8 w-full rounded-xl" />
+                <Skeleton className="h-8 w-4/5 rounded-xl" />
 
+                {/* Description */}
                 <Skeleton className="h-4 w-full rounded-lg" />
+                <Skeleton className="h-4 w-full rounded-lg" />
+                <Skeleton className="h-4 w-3/4 rounded-lg" />
 
-                <Skeleton className="h-4 w-4/5 rounded-lg" />
-
-                <div className="flex items-center gap-3 pt-4">
-                  <Skeleton className="h-10 w-10 rounded-full" />
+                {/* Author */}
+                <div className="flex items-center gap-3 pt-2">
+                  <Skeleton className="h-11 w-11 rounded-full" />
 
                   <div className="flex-1 space-y-2">
                     <Skeleton className="h-4 w-32 rounded-lg" />
-
                     <Skeleton className="h-3 w-24 rounded-lg" />
                   </div>
                 </div>
 
-                <div className="flex justify-between pt-4">
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-3">
                   <Skeleton className="h-4 w-20 rounded-lg" />
 
-                  <Skeleton className="h-10 w-28 rounded-lg" />
+                  <Skeleton className="h-10 w-28 rounded-xl" />
                 </div>
               </div>
             </article>

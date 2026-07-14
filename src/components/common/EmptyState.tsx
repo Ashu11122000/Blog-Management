@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
  * ==========================================================
  */
 
-export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface EmptyStateProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Optional icon.
    */
@@ -28,26 +29,24 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /**
    * Optional action element.
-   *
-   * Example:
-   * <Button>Create Blog</Button>
    */
   action?: React.ReactNode;
 }
 
 /**
  * ==========================================================
- * EmptyState Component
+ * Premium EmptyState Component
  * ==========================================================
  *
  * Features
  * ----------
- * ✓ Reusable
+ * ✓ Premium UI
  * ✓ Accessible
+ * ✓ Dark Mode
  * ✓ Optional Icon
  * ✓ Optional Description
  * ✓ Optional Action
- * ✓ Dark Mode
+ * ✓ Reusable
  */
 
 export default function EmptyState({
@@ -63,45 +62,61 @@ export default function EmptyState({
     <div
       className={cn(
         "flex w-full flex-col items-center justify-center",
-        "rounded-xl border border-dashed border-(--border)",
+        "rounded-2xl",
+        "border border-dashed border-(--border)",
         "bg-(--card)",
-        "px-8 py-12",
+        "px-8 py-14",
         "text-center",
+        "transition-all duration-300",
         className,
       )}
       {...props}
     >
       <div
-        className="
-          mb-6
-          flex
-          h-16
-          w-16
-          items-center
-          justify-center
-          rounded-full
-          bg-slate-100
-          text-slate-500
-          dark:bg-slate-800
-          dark:text-slate-400
-        "
+        className={cn(
+          "mb-6",
+          "flex h-16 w-16 items-center justify-center",
+          "rounded-full",
+          "bg-muted",
+          "text-muted-foreground",
+          "ring-1 ring-(--border)",
+        )}
       >
         {icon ?? <Inbox className="h-8 w-8" />}
       </div>
 
-      <h2 className="text-xl font-semibold text-(--foreground)">
+      <h2
+        className={cn(
+          "text-xl font-semibold tracking-tight",
+          "text-(--foreground)",
+        )}
+      >
         {title}
       </h2>
 
       {description && (
-        <p className="mt-3 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-400">
+        <p
+          className={cn(
+            "mt-3 max-w-md",
+            "text-sm leading-6",
+            "text-muted-foreground",
+          )}
+        >
           {description}
         </p>
       )}
 
-      {children}
+      {children && (
+        <div className="mt-6 w-full">
+          {children}
+        </div>
+      )}
 
-      {action && <div className="mt-6">{action}</div>}
+      {action && (
+        <div className="mt-8 flex items-center justify-center">
+          {action}
+        </div>
+      )}
     </div>
   );
 }

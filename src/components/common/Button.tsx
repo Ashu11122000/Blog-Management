@@ -8,56 +8,68 @@ import { cn } from "@/lib/utils";
 
 /**
  * ==========================================================
- * Button Variants
+ * Premium Button Variants
  * ==========================================================
  *
- * Defines all supported visual styles and sizes.
+ * Ultra Premium UI
+ * - Softer radius
+ * - Better spacing
+ * - Premium hover transitions
+ * - Improved dark mode
+ * - Consistent heights
  */
 
 const buttonVariants = cva(
   [
     "inline-flex items-center justify-center gap-2",
-    "whitespace-nowrap rounded-lg",
+    "whitespace-nowrap",
+    "rounded-xl",
     "font-medium",
-    "transition-all duration-200",
+    "leading-none",
+    "select-none",
+    "transition-all duration-300 ease-out",
     "focus-visible:outline-none",
     "focus-visible:ring-2",
-    "focus-visible:ring-blue-500",
+    "focus-visible:ring-blue-500/40",
     "focus-visible:ring-offset-2",
+    "focus-visible:ring-offset-background",
     "disabled:pointer-events-none",
     "disabled:opacity-50",
-    "select-none",
+    "[&_svg]:pointer-events-none",
+    "[&_svg]:h-4",
+    "[&_svg]:w-4",
+    "[&_svg]:shrink-0",
   ].join(" "),
   {
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white shadow-sm hover:bg-blue-700 active:bg-blue-800",
+          "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md active:scale-[0.98]",
 
         secondary:
-          "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700",
+          "bg-slate-100 text-slate-900 shadow-sm hover:bg-slate-200 hover:shadow-md dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700",
 
         outline:
-          "border border-[var(--border)] bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800",
+          "border border-[var(--border)] bg-background shadow-sm hover:bg-muted hover:shadow-sm",
 
         ghost:
-          "hover:bg-slate-100 dark:hover:bg-slate-800",
+          "bg-transparent hover:bg-muted",
 
         destructive:
-          "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+          "bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md active:scale-[0.98]",
 
         link:
-          "p-0 text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
+          "rounded-none p-0 text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
       },
 
       size: {
-        sm: "h-9 px-3 text-sm",
+        sm: "h-9 px-4 text-sm",
 
-        default: "h-10 px-4 py-2 text-sm",
+        default: "h-11 px-5 text-sm",
 
-        lg: "h-11 px-6 text-base",
+        lg: "h-12 px-6 text-base",
 
-        icon: "h-10 w-10 p-0",
+        icon: "h-11 w-11 p-0",
       },
 
       fullWidth: {
@@ -82,35 +94,35 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
-   * Render the child element instead of a button.
+   * Render child instead of button.
    * Useful for Next.js Link.
    */
   asChild?: boolean;
 
   /**
-   * Shows a loading spinner and disables the button.
+   * Shows loading spinner.
    */
   loading?: boolean;
 
   /**
-   * Icon displayed before the button text.
+   * Icon before text.
    */
   leftIcon?: React.ReactNode;
 
   /**
-   * Icon displayed after the button text.
+   * Icon after text.
    */
   rightIcon?: React.ReactNode;
 
   /**
-   * Makes the button take the full width of its parent.
+   * Stretch to full width.
    */
   fullWidth?: boolean;
 }
 
 /**
  * ==========================================================
- * Button Component
+ * Premium Button Component
  * ==========================================================
  *
  * Features
@@ -118,10 +130,10 @@ export interface ButtonProps
  * ✓ CVA Variants
  * ✓ Multiple Sizes
  * ✓ Loading State
- * ✓ Disabled State
  * ✓ Left / Right Icons
  * ✓ asChild Support
  * ✓ Accessible
+ * ✓ Premium UI Polish
  * ✓ Dark Mode
  * ✓ Reusable
  */
@@ -143,33 +155,33 @@ export default function Button({
   const Component = asChild ? Slot : "button";
 
   return (
-  <Component
-    type={!asChild ? type : undefined}
-    disabled={!asChild ? disabled || loading : undefined}
-    className={cn(
-      buttonVariants({
-        variant,
-        size,
-        fullWidth,
-      }),
-      className
-    )}
-    {...props}
-  >
-    {loading ? (
-      <Loader2
-        className="h-4 w-4 animate-spin"
-        aria-hidden="true"
-      />
-    ) : (
-      leftIcon
-    )}
+    <Component
+      type={!asChild ? type : undefined}
+      disabled={!asChild ? disabled || loading : undefined}
+      className={cn(
+        buttonVariants({
+          variant,
+          size,
+          fullWidth,
+        }),
+        className
+      )}
+      {...props}
+    >
+      {loading ? (
+        <Loader2
+          className="h-4 w-4 animate-spin"
+          aria-hidden="true"
+        />
+      ) : (
+        leftIcon
+      )}
 
-    <Slottable>{children}</Slottable>
+      <Slottable>{children}</Slottable>
 
-    {!loading && rightIcon}
-  </Component>
-);
+      {!loading && rightIcon}
+    </Component>
+  );
 }
 
 /**

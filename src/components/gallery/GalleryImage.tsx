@@ -17,7 +17,7 @@ export default function GalleryImage({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl bg-muted",
+        "group relative overflow-hidden rounded-2xl bg-muted/60",
         className,
       )}
     >
@@ -30,7 +30,44 @@ export default function GalleryImage({
         placeholder={image.blurDataURL ? "blur" : "empty"}
         blurDataURL={image.blurDataURL}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+        className="
+          h-full
+          w-full
+          object-cover
+          transition-transform
+          duration-700
+          ease-out
+          group-hover:scale-[1.04]
+        "
+      />
+
+      {/* Soft premium overlay */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/10
+          via-transparent
+          to-transparent
+          opacity-0
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+
+      {/* Subtle top highlight */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          top-0
+          h-px
+          bg-white/30
+        "
       />
     </div>
   );

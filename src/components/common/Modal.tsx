@@ -64,37 +64,33 @@ export interface ModalProps {
   closeOnEscape?: boolean;
 
   /**
-   * Hide close (X) button.
+   * Hide close button.
    */
   hideCloseButton?: boolean;
 
   /**
-   * Additional class names.
+   * Additional classes.
    */
   className?: string;
 }
 
 /**
  * ==========================================================
- * Modal Width Variants
+ * Width Variants
  * ==========================================================
  */
 
 const maxWidthClasses = {
   sm: "max-w-sm",
-
   md: "max-w-md",
-
   lg: "max-w-lg",
-
   xl: "max-w-xl",
-
   "2xl": "max-w-2xl",
 } as const;
 
 /**
  * ==========================================================
- * Modal Component
+ * Premium Modal
  * ==========================================================
  */
 
@@ -114,7 +110,7 @@ export default function Modal({
 
   /**
    * ----------------------------------------------------------
-   * Lock body scroll while modal is open.
+   * Lock body scroll.
    * ----------------------------------------------------------
    */
 
@@ -134,7 +130,7 @@ export default function Modal({
 
   /**
    * ----------------------------------------------------------
-   * Close modal with Escape key.
+   * Escape key support.
    * ----------------------------------------------------------
    */
 
@@ -151,13 +147,13 @@ export default function Modal({
 
     window.addEventListener(
       "keydown",
-      handleKeyDown
+      handleKeyDown,
     );
 
     return () => {
       window.removeEventListener(
         "keydown",
-        handleKeyDown
+        handleKeyDown,
       );
     };
   }, [
@@ -168,7 +164,7 @@ export default function Modal({
 
   /**
    * ----------------------------------------------------------
-   * Don't render when closed.
+   * Don't render if closed.
    * ----------------------------------------------------------
    */
 
@@ -178,52 +174,59 @@ export default function Modal({
 
   /**
    * ----------------------------------------------------------
-   * Render using React Portal.
+   * Portal
    * ----------------------------------------------------------
    */
 
   return createPortal(
-
-        <div
-      className="
-        fixed inset-0 z-50
-        flex items-center justify-center
-        bg-black/50
-        p-4
-        backdrop-blur-sm
-        animate-in fade-in-0
-      "
+    <div
+      className={cn(
+        "fixed inset-0 z-50",
+        "flex items-center justify-center",
+        "bg-black/60",
+        "backdrop-blur-md",
+        "p-6",
+        "animate-in fade-in-0 duration-300",
+      )}
       onClick={() => {
         if (closeOnOverlayClick) {
           onClose();
         }
       }}
     >
-      <div
+
+            <div
         ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}
         className={cn(
-          "relative w-full overflow-hidden rounded-2xl",
+          "relative w-full overflow-hidden",
+          "rounded-2xl",
           "border border-(--border)",
           "bg-(--card)",
           "text-(--card-foreground)",
           "shadow-2xl",
-          "animate-in zoom-in-95 fade-in-0 duration-200",
+          "animate-in zoom-in-95 fade-in-0 duration-300",
           maxWidthClasses[maxWidth],
-          className
+          className,
         )}
         onClick={(event) => {
           event.stopPropagation();
         }}
       >
         {(title || !hideCloseButton) && (
-          <div className="flex items-center justify-between border-b border-(--border) px-6 py-4">
+          <div
+            className={cn(
+              "flex items-center justify-between",
+              "border-b border-(--border)",
+              "px-6 py-5",
+            )}
+          >
             {title ? (
               <h2
                 id="modal-title"
-                className="text-lg font-semibold"
+                className="text-xl font-semibold tracking-tight"
               >
                 {title}
               </h2>
@@ -236,16 +239,18 @@ export default function Modal({
                 type="button"
                 onClick={onClose}
                 aria-label="Close modal"
-                className="
-                  rounded-lg
-                  p-2
-                  transition-colors
-                  hover:bg-slate-100
-                  dark:hover:bg-slate-800
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-blue-500
-                "
+                className={cn(
+                  "inline-flex h-10 w-10 items-center justify-center",
+                  "rounded-xl",
+                  "text-muted-foreground",
+                  "transition-all duration-200",
+                  "hover:bg-muted hover:text-foreground",
+                  "focus-visible:outline-none",
+                  "focus-visible:ring-2",
+                  "focus-visible:ring-blue-500/40",
+                  "focus-visible:ring-offset-2",
+                  "focus-visible:ring-offset-background",
+                )}
               >
                 <X className="h-5 w-5" />
               </button>
@@ -253,17 +258,24 @@ export default function Modal({
           </div>
         )}
 
-        <div className="max-h-[70vh] overflow-y-auto p-6">
+        <div className="max-h-[70vh] overflow-y-auto px-6 py-6">
           {children}
         </div>
 
         {footer && (
-          <div className="flex items-center justify-end gap-3 border-t border-(--border) px-6 py-4">
+          <div
+            className={cn(
+              "flex items-center justify-end gap-3",
+              "border-t border-(--border)",
+              "bg-muted/30",
+              "px-6 py-5",
+            )}
+          >
             {footer}
           </div>
         )}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils";
  * ==========================================================
  */
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * Input label.
    */
@@ -37,18 +38,15 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 /**
  * ==========================================================
- * Input Component
+ * Premium Input Component
  * ==========================================================
  *
  * Features
  * ----------
  * ✓ React Hook Form Compatible
  * ✓ forwardRef
- * ✓ Label
- * ✓ Error State
- * ✓ Helper Text
- * ✓ Left / Right Icons
  * ✓ Accessible
+ * ✓ Premium UI
  * ✓ Dark Mode
  */
 
@@ -73,21 +71,30 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const inputId = id ?? generatedId;
 
     return (
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-2.5">
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="text-sm font-medium text-(--foreground)"
           >
             {label}
 
-            {required && <span className="ml-1 text-red-500">*</span>}
+            {required && (
+              <span className="ml-1 text-red-500">*</span>
+            )}
           </label>
         )}
 
         <div className="relative">
           {leftIcon && (
-            <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400">
+            <div
+              className={cn(
+                "pointer-events-none",
+                "absolute inset-y-0 left-4",
+                "flex items-center",
+                "text-muted-foreground",
+              )}
+            >
               {leftIcon}
             </div>
           )}
@@ -107,25 +114,30 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   : undefined
             }
             className={cn(
-              "flex h-10 w-full rounded-lg border",
-              "border-(--border)",
+              "flex h-11 w-full",
+              "rounded-xl",
+              "border border-(--border)",
               "bg-(--background)",
-              "text-(--foreground)",
-              "px-3 py-2 text-sm",
-              "placeholder:text-slate-400",
-              "transition-colors duration-200",
+              "px-4 py-2",
+              "text-sm text-(--foreground)",
+              "placeholder:text-muted-foreground",
+
+              "transition-all duration-300 ease-out",
+
               "focus:outline-none",
               "focus:ring-2",
-              "focus:ring-blue-500",
+              "focus:ring-blue-500/30",
               "focus:border-blue-500",
+
               "disabled:cursor-not-allowed",
               "disabled:opacity-50",
 
-              leftIcon && "pl-10",
+              leftIcon && "pl-11",
 
-              rightIcon && "pr-10",
+              rightIcon && "pr-11",
 
-              error && "border-red-500 focus:border-red-500 focus:ring-red-500",
+              error &&
+                "border-red-500 focus:border-red-500 focus:ring-red-500/30",
 
               className,
             )}
@@ -133,7 +145,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
 
           {rightIcon && (
-            <div className="absolute inset-y-0 right-3 flex items-center text-slate-400">
+            <div
+              className={cn(
+                "absolute inset-y-0 right-4",
+                "flex items-center",
+                "text-muted-foreground",
+              )}
+            >
               {rightIcon}
             </div>
           )}
@@ -142,7 +160,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {helperText && !error && (
           <p
             id={`${inputId}-helper`}
-            className="text-sm text-slate-500 dark:text-slate-400"
+            className="text-sm text-muted-foreground"
           >
             {helperText}
           </p>

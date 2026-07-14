@@ -6,8 +6,8 @@ import AboutStats from "@/components/about/AboutStats";
 import AboutStory from "@/components/about/AboutStory";
 import AboutTimeline from "@/components/about/AboutTimeline";
 import AboutValues from "@/components/about/AboutValues";
-import { aboutData } from "@/data/about";
 import { SITE_CONFIG } from "@/constants/site";
+import { aboutData } from "@/data/about";
 
 export const metadata: Metadata = {
   title: `About | ${SITE_CONFIG.title}`,
@@ -31,18 +31,20 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="pb-24">
       <AboutHero hero={aboutData.hero} />
 
-      <AboutStory story={aboutData.story} />
+      <div className="space-y-24 lg:space-y-32">
+        <AboutStory story={aboutData.story} />
 
-      <AboutStats stats={aboutData.stats} />
+        <AboutStats stats={aboutData.stats} />
 
-      <AboutValues values={aboutData.values} />
+        <AboutValues values={aboutData.values} />
 
-      <AboutTimeline timeline={aboutData.timeline} />
+        <AboutTimeline timeline={aboutData.timeline} />
 
-      <AboutCTA />
+        <AboutCTA />
+      </div>
     </main>
   );
 }

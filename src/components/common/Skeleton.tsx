@@ -6,18 +6,22 @@ import { cn } from "@/lib/utils";
 
 /**
  * ==========================================================
- * Skeleton Variants
+ * Premium Skeleton Variants
  * ==========================================================
  */
 
 const skeletonVariants = cva(
-  ["animate-pulse", "bg-slate-200", "dark:bg-slate-800"].join(" "),
+  [
+    "animate-pulse",
+    "bg-muted",
+    "transition-all duration-300",
+  ].join(" "),
   {
     variants: {
       variant: {
-        default: "rounded-lg",
+        default: "rounded-xl",
 
-        rounded: "rounded-xl",
+        rounded: "rounded-2xl",
 
         circle: "rounded-full",
       },
@@ -36,30 +40,22 @@ const skeletonVariants = cva(
  */
 
 export interface SkeletonProps
-  extends
-    React.HTMLAttributes<HTMLDivElement>,
+  extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof skeletonVariants> {
   /**
    * Skeleton width.
-   *
-   * Example:
-   * "100%"
-   * "250px"
    */
   width?: number | string;
 
   /**
    * Skeleton height.
-   *
-   * Example:
-   * "24px"
    */
   height?: number | string;
 }
 
 /**
  * ==========================================================
- * Skeleton Component
+ * Premium Skeleton Component
  * ==========================================================
  *
  * Features
@@ -70,6 +66,7 @@ export interface SkeletonProps
  * ✓ Circle
  * ✓ Responsive
  * ✓ Dark Mode
+ * ✓ Premium UI
  */
 
 export default function Skeleton({
