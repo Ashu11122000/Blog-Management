@@ -3,58 +3,123 @@ import type { Author } from "@/types/author";
 export const authors: Author[] = [
   {
     id: "1",
-
     name: "John Doe",
-
     username: "johndoe",
-
     email: "john@example.com",
-
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-
-    bio: "Full Stack Developer passionate about modern web technologies.",
-
+    bio: "Full Stack Developer passionate about modern web technologies, scalable architecture, and cloud-native applications.",
     role: "Senior Software Engineer",
-
     company: "Open Source",
-
-    location: "New York",
-
+    location: "New York, USA",
     website: "https://johndoe.dev",
-
     twitter: "johndoe",
-
     linkedin: "john-doe",
-
     github: "johndoe",
-
     featured: true,
   },
   {
     id: "2",
-
     name: "Jane Smith",
-
     username: "janesmith",
-
     email: "jane@example.com",
-
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-
-    bio: "Frontend Engineer specializing in React and Next.js.",
-
+    bio: "Frontend Engineer specializing in React, Next.js, UI design, and accessibility.",
     role: "Frontend Engineer",
-
     company: "Tech Studio",
-
-    location: "London",
-
+    location: "London, UK",
     website: "https://janesmith.dev",
-
     twitter: "janesmith",
-
     linkedin: "jane-smith",
-
     github: "janesmith",
+  },
+  {
+    id: "3",
+    name: "Michael Brown",
+    username: "michaelbrown",
+    email: "michael@example.com",
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+    bio: "Backend Engineer focused on Node.js, databases, REST APIs, and distributed systems.",
+    role: "Backend Developer",
+    company: "CloudWorks",
+    location: "Toronto, Canada",
+    website: "https://michael.dev",
+    twitter: "mikebrown",
+    linkedin: "michael-brown",
+    github: "michaelbrown",
+  },
+  {
+    id: "4",
+    name: "Emily Wilson",
+    username: "emilywilson",
+    email: "emily@example.com",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    bio: "UI/UX Designer creating intuitive digital experiences with modern design systems.",
+    role: "UI/UX Designer",
+    company: "Creative Labs",
+    location: "Berlin, Germany",
+    website: "https://emilywilson.dev",
+    twitter: "emilydesign",
+    linkedin: "emily-wilson",
+    github: "emilywilson",
+  },
+  {
+    id: "5",
+    name: "David Lee",
+    username: "davidlee",
+    email: "david@example.com",
+    avatar: "https://randomuser.me/api/portraits/men/59.jpg",
+    bio: "DevOps Engineer passionate about Docker, Kubernetes, CI/CD, and cloud infrastructure.",
+    role: "DevOps Engineer",
+    company: "InfraTech",
+    location: "Singapore",
+    website: "https://davidlee.dev",
+    twitter: "davidlee",
+    linkedin: "david-lee",
+    github: "davidlee",
+  },
+  {
+    id: "6",
+    name: "Sophia Martinez",
+    username: "sophiam",
+    email: "sophia@example.com",
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    bio: "Technical Writer simplifying complex software concepts into easy-to-follow guides.",
+    role: "Technical Writer",
+    company: "DocsHub",
+    location: "Madrid, Spain",
+    website: "https://sophiam.dev",
+    twitter: "sophiam",
+    linkedin: "sophia-martinez",
+    github: "sophiam",
+  },
+  {
+    id: "7",
+    name: "Alex Johnson",
+    username: "alexjohnson",
+    email: "alex@example.com",
+    avatar: "https://randomuser.me/api/portraits/men/75.jpg",
+    bio: "AI Engineer exploring machine learning, LLMs, automation, and intelligent applications.",
+    role: "AI Engineer",
+    company: "Future AI",
+    location: "San Francisco, USA",
+    website: "https://alexjohnson.dev",
+    twitter: "alexai",
+    linkedin: "alex-johnson",
+    github: "alexjohnson",
+  },
+  {
+    id: "8",
+    name: "Olivia Taylor",
+    username: "oliviataylor",
+    email: "olivia@example.com",
+    avatar: "https://randomuser.me/api/portraits/women/79.jpg",
+    bio: "Mobile and cross-platform developer building high-performance Flutter applications.",
+    role: "Mobile Developer",
+    company: "AppForge",
+    location: "Sydney, Australia",
+    website: "https://oliviataylor.dev",
+    twitter: "oliviataylor",
+    linkedin: "olivia-taylor",
+    github: "oliviataylor",
   },
 ];

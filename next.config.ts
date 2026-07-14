@@ -1,13 +1,10 @@
 import type { NextConfig } from "next";
-
 import createNextIntlPlugin from "next-intl/plugin";
 
 /**
  * ==========================================================
  * Next-Intl Plugin
  * ==========================================================
- *
- * Integrates next-intl with the Next.js App Router.
  */
 
 const withNextIntl = createNextIntlPlugin();
@@ -26,30 +23,27 @@ const withNextIntl = createNextIntlPlugin();
  */
 
 const nextConfig: NextConfig = {
-  /**
-   * ----------------------------------------------------------
-   * Remote Images
-   * ----------------------------------------------------------
-   */
-
   images: {
     remotePatterns: [
+      // Unsplash
       {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+
+      // Random User avatars
       {
         protocol: "https",
         hostname: "randomuser.me",
       },
+
+      // Picsum Photos
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
     ],
   },
 };
-
-/**
- * ==========================================================
- * Export Configuration
- * ==========================================================
- */
 
 export default withNextIntl(nextConfig);
