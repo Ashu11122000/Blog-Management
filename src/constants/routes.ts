@@ -1,75 +1,87 @@
 /**
- * ==========================================================
- * Application Routes
- * ==========================================================
+ * =============================================================================
+ * Route Constants
+ * =============================================================================
  *
- * Centralized route definitions used throughout the application.
+ * Centralized application routes.
  *
- * Benefits:
- * - Avoids hardcoded route strings
- * - Improves maintainability
- * - Provides autocomplete and type safety
- * - Keeps navigation, middleware, and redirects consistent
+ * Responsibilities:
+ * - Public routes
+ * - Authentication routes
+ * - Dashboard routes
+ * - API routes
+ * - Utility helpers
+ *
+ * =============================================================================
  */
 
 export const ROUTES = {
-  // Public Pages
-  HOME: "/",
-  ABOUT: "/about",
-  BLOG: "/blog",
-  CONTACT: "/contact",
-  GALLERY: "/gallery",
-  SEARCH: "/search",
+  /**
+   * Public Routes
+   */
+  PUBLIC: {
+    HOME: "/",
+    BLOG: "/blog",
+    BLOG_DETAILS: "/blog",
+    CATEGORIES: "/categories",
+    TAGS: "/tags",
+    ABOUT: "/about",
+    CONTACT: "/contact",
+    SEARCH: "/search",
+    PRIVACY_POLICY: "/privacy-policy",
+    TERMS_OF_SERVICE: "/terms-of-service",
+    COOKIE_POLICY: "/cookie-policy",
+    NOT_FOUND: "/not-found",
+  },
 
-  // Authentication
-  LOGIN: "/login",
-  LOGOUT: "/logout",
+  /**
+   * Authentication
+   */
+  AUTH: {
+    LOGIN: "/login",
+    REGISTER: "/register",
+    LOGOUT: "/logout",
+    FORGOT_PASSWORD: "/forgot-password",
+    RESET_PASSWORD: "/reset-password",
+    VERIFY_EMAIL: "/verify-email",
+    ERROR: "/auth/error",
+  },
 
-  // Dashboard
-  DASHBOARD: "/dashboard",
-  DASHBOARD_POSTS: "/dashboard/posts",
-  DASHBOARD_CATEGORIES: "/dashboard/categories",
-  DASHBOARD_GALLERY: "/dashboard/gallery",
-  DASHBOARD_PROFILE: "/dashboard/profile",
-  DASHBOARD_SETTINGS: "/dashboard/settings",
+  /**
+   * Dashboard
+   */
+  DASHBOARD: {
+    HOME: "/dashboard",
+
+    POSTS: "/dashboard/posts",
+    CREATE_POST: "/dashboard/posts/create",
+
+    CATEGORIES: "/dashboard/categories",
+    CREATE_CATEGORY: "/dashboard/categories/create",
+
+    TAGS: "/dashboard/tags",
+    CREATE_TAG: "/dashboard/tags/create",
+
+    COMMENTS: "/dashboard/comments",
+
+    USERS: "/dashboard/users",
+
+    PROFILE: "/dashboard/profile",
+
+    SETTINGS: "/dashboard/settings",
+  },
+
+  /**
+   * API
+   */
+  API: {
+    ROOT: "/api",
+    V1: "/api/v1",
+    UPLOAD: "/api/uploadthing",
+    AUTH: "/api/auth",
+  },
 } as const;
 
-/**
- * Routes accessible without authentication.
- */
-export const PUBLIC_ROUTES = [
-  ROUTES.HOME,
-  ROUTES.ABOUT,
-  ROUTES.BLOG,
-  ROUTES.CONTACT,
-  ROUTES.GALLERY,
-  ROUTES.SEARCH,
-  ROUTES.LOGIN,
-] as const;
+export type Routes = typeof ROUTES;
 
-/**
- * Routes that require authentication.
- */
-export const PROTECTED_ROUTES = [
-  ROUTES.DASHBOARD,
-  ROUTES.DASHBOARD_POSTS,
-  ROUTES.DASHBOARD_CATEGORIES,
-  ROUTES.DASHBOARD_GALLERY,
-  ROUTES.DASHBOARD_PROFILE,
-  ROUTES.DASHBOARD_SETTINGS,
-] as const;
-
-/**
- * Authentication-related routes.
- * Authenticated users should typically be redirected away from these.
- */
-export const AUTH_ROUTES = [ROUTES.LOGIN] as const;
-
-/**
- * Default redirect destinations.
- */
-export const DEFAULT_REDIRECTS = {
-  AFTER_LOGIN: ROUTES.DASHBOARD,
-  AFTER_LOGOUT: ROUTES.LOGIN,
-  UNAUTHORIZED: ROUTES.LOGIN,
-} as const;
+export default ROUTES;

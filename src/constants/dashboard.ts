@@ -1,49 +1,84 @@
-import type { LucideIcon } from "lucide-react";
+/**
+ * =============================================================================
+ * Dashboard Constants
+ * =============================================================================
+ *
+ * Shared constants for the admin dashboard.
+ *
+ * Responsibilities:
+ * - Dashboard widgets
+ * - Statistics cards
+ * - Refresh intervals
+ * - Recent activity
+ * - Charts
+ * - Pagination
+ * =============================================================================
+ */
 
-import {
-  LayoutDashboard,
-  FileText,
-  FolderTree,
-  ImageIcon,
-  User,
-  Settings,
-} from "lucide-react";
+export const DASHBOARD = {
+  /**
+   * Auto Refresh
+   */
+  REFRESH: {
+    INTERVAL: 60_000, // 1 minute
+    ENABLED: true,
+  },
 
-export interface DashboardNavItem {
-  title: string;
-  href: string;
-  icon: LucideIcon;
-}
+  /**
+   * Statistics Cards
+   */
+  STATS: {
+    TOTAL_POSTS: "totalPosts",
+    TOTAL_CATEGORIES: "totalCategories",
+    TOTAL_TAGS: "totalTags",
+    TOTAL_COMMENTS: "totalComments",
+    TOTAL_USERS: "totalUsers",
+    TOTAL_VIEWS: "totalViews",
+    TOTAL_PUBLISHED: "totalPublished",
+    TOTAL_DRAFTS: "totalDrafts",
+  },
 
-export const dashboardNavigation: DashboardNavItem[] = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
+  /**
+   * Recent Activity
+   */
+  RECENT_ACTIVITY: {
+    LIMIT: 10,
   },
-  {
-    title: "Posts",
-    href: "/dashboard/posts",
-    icon: FileText,
+
+  /**
+   * Latest Posts
+   */
+  LATEST_POSTS: {
+    LIMIT: 5,
   },
-  {
-    title: "Categories",
-    href: "/dashboard/categories",
-    icon: FolderTree,
+
+  /**
+   * Latest Comments
+   */
+  LATEST_COMMENTS: {
+    LIMIT: 5,
   },
-  {
-    title: "Gallery",
-    href: "/dashboard/gallery",
-    icon: ImageIcon,
+
+  /**
+   * Charts
+   */
+  CHARTS: {
+    POSTS_PER_MONTH: "postsPerMonth",
+    COMMENTS_PER_MONTH: "commentsPerMonth",
+    CATEGORY_DISTRIBUTION: "categoryDistribution",
+    POST_STATUS: "postStatus",
   },
-  {
-    title: "Profile",
-    href: "/dashboard/profile",
-    icon: User,
+
+  /**
+   * Pagination
+   */
+  PAGINATION: {
+    DEFAULT_PAGE: 1,
+    DEFAULT_LIMIT: 10,
+    MAX_LIMIT: 100,
   },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
-];
+} as const;
+
+export type DashboardConstants = typeof DASHBOARD;
+
+export default DASHBOARD;

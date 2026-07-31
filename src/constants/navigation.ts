@@ -1,89 +1,110 @@
 /**
- * ==========================================================
- * Navigation Types
- * ==========================================================
+ * =============================================================================
+ * Navigation Constants
+ * =============================================================================
+ *
+ * Centralized navigation configuration.
+ *
+ * Responsibilities:
+ * - Main navigation
+ * - Dashboard navigation
+ * - Footer navigation
+ * - External links
+ *
+ * NOTE:
+ * Do NOT import React components or icons here.
+ * Keep this file framework-agnostic.
+ * =============================================================================
  */
 
-export interface NavigationItem {
+export const NAVIGATION = {
   /**
-   * Translation key from messages/*.json
+   * Public Navigation
    */
-  key: string;
+  MAIN: [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "Categories",
+      href: "/categories",
+    },
+    {
+      label: "About",
+      href: "/about",
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+    },
+  ],
 
   /**
-   * Route path.
+   * Dashboard Navigation
    */
-  href: string;
+  DASHBOARD: [
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      label: "Posts",
+      href: "/dashboard/posts",
+    },
+    {
+      label: "Categories",
+      href: "/dashboard/categories",
+    },
+    {
+      label: "Tags",
+      href: "/dashboard/tags",
+    },
+    {
+      label: "Comments",
+      href: "/dashboard/comments",
+    },
+    {
+      label: "Users",
+      href: "/dashboard/users",
+    },
+    {
+      label: "Settings",
+      href: "/dashboard/settings",
+    },
+  ],
 
   /**
-   * Whether the link should be highlighted as primary.
+   * Footer Navigation
    */
-  primary?: boolean;
-}
+  FOOTER: [
+    {
+      label: "Privacy Policy",
+      href: "/privacy-policy",
+    },
+    {
+      label: "Terms of Service",
+      href: "/terms-of-service",
+    },
+    {
+      label: "Cookie Policy",
+      href: "/cookie-policy",
+    },
+  ],
 
-/**
- * ==========================================================
- * Main Navigation
- * ==========================================================
- */
+  /**
+   * External Links
+   */
+  EXTERNAL: {
+    GITHUB: "https://github.com",
+    LINKEDIN: "https://linkedin.com",
+  },
+} as const;
 
-export const MAIN_NAVIGATION: NavigationItem[] = [
-  {
-    key: "home",
-    href: "/",
-  },
-  {
-    key: "blog",
-    href: "/blog",
-  },
-  {
-    key: "gallery",
-    href: "/gallery",
-  },
-  {
-    key: "search",
-    href: "/search",
-  },
-  {
-    key: "about",
-    href: "/about",
-  },
-  {
-    key: "contact",
-    href: "/contact",
-  },
-];
+export type NavigationConstants = typeof NAVIGATION;
 
-/**
- * ==========================================================
- * Dashboard Navigation
- * ==========================================================
- */
-
-export const DASHBOARD_NAVIGATION: NavigationItem[] = [
-  {
-    key: "dashboard",
-    href: "/dashboard",
-  },
-  {
-    key: "posts",
-    href: "/dashboard/posts",
-  },
-  {
-    key: "categories",
-    href: "/dashboard/categories",
-  },
-  {
-    key: "gallery",
-    href: "/dashboard/gallery",
-  },
-  {
-    key: "profile",
-    href: "/dashboard/profile",
-  },
-  {
-    key: "settings",
-    href: "/dashboard/settings",
-  },
-];
-
+export default NAVIGATION;

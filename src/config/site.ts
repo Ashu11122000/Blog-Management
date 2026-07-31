@@ -3,91 +3,89 @@
  * Site Configuration
  * =============================================================================
  *
- * Centralized site metadata used throughout the application.
+ * Centralized site metadata.
  *
  * Responsibilities:
- * - Application branding
- * - SEO defaults
- * - Social links
+ * - Application identity
+ * - Branding
  * - Organization information
- * - Open Graph defaults
- *
- * NOTE:
- * This file should only contain static site metadata.
+ * - Contact information
+ * - Social profiles
  * =============================================================================
  */
 
-import { env } from "@/config/env";
-
 export const SITE_CONFIG = {
   /**
-   * Basic Information
+   * Application
    */
-  name: env.NEXT_PUBLIC_APP_NAME,
+  name: "Blog Management System",
+
+  shortName: "Blog Management",
 
   title: "Blog Management System",
 
   description:
-    "A modern, enterprise-grade Blog Management System built with Next.js, Prisma, PostgreSQL, and TypeScript.",
+    "A modern, enterprise-grade Blog Management System built with Next.js 16, React 19, Prisma, PostgreSQL, TypeScript, and Tailwind CSS.",
 
-  url: env.NEXT_PUBLIC_APP_URL,
+  url: "http://localhost:3000",
 
   locale: "en-US",
 
   language: "en",
 
   /**
+   * Author
+   */
+  author: {
+    name: "Ashish Sharma",
+    email: "ashu11vats@gmail.com",
+  },
+
+  /**
    * Organization
    */
   organization: {
-    name: env.NEXT_PUBLIC_APP_NAME,
-    email: "support@example.com",
+    name: "Blog Management System",
   },
 
   /**
    * SEO
    */
-  seo: {
-    titleTemplate: "%s | Blog Management System",
-    defaultTitle: "Blog Management System",
-    defaultDescription:
-      "Enterprise-grade blog management platform built with Next.js 16.",
-    keywords: [
-      "Blog",
-      "CMS",
-      "Next.js",
-      "React",
-      "Prisma",
-      "PostgreSQL",
-      "TypeScript",
-      "Tailwind CSS",
-    ],
-  },
+  keywords: [
+    "Blog Management System",
+    "Blog CMS",
+    "Next.js",
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Tailwind CSS",
+    "Prisma ORM",
+    "PostgreSQL",
+    "App Router",
+  ],
 
   /**
-   * Open Graph
-   */
-  openGraph: {
-    type: "website",
-    image: "/images/og-image.png",
-    imageWidth: 1200,
-    imageHeight: 630,
-  },
-
-  /**
-   * Social
+   * Social Links
    */
   social: {
-    github: "https://github.com/your-username",
-    linkedin: "https://linkedin.com/in/your-profile",
-    twitter: "",
+    github: "https://github.com/Ashu11122000",
+    linkedin: "https://www.linkedin.com/in/ashish-sharma-383439191/",
+  },
+
+  /**
+   * Assets
+   */
+  images: {
+    logo: "/logo.png",
+    favicon: "/favicon.ico",
+    ogImage: "/images/og-image.png",
   },
 
   /**
    * Support
    */
   support: {
-    email: "support@example.com",
+    email: "ashu11vats@gmail.com",
   },
 } as const;
 
