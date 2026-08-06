@@ -1,70 +1,134 @@
-/**
- * ==========================================================
- * Authentication Types
- * ==========================================================
- *
- * Shared authentication models used throughout the application.
- *
- * These interfaces provide strong typing for:
- * - Login forms
- * - Session management
- * - Server Actions
- * - Middleware
- * - Protected routes
- * - User authentication state
- */
+import type { ID } from "./common";
 
 /**
- * Supported user roles.
- *
- * Extend this union as your application grows.
+ * Supported authentication providers.
  */
-export type UserRole = "admin" | "editor" | "author";
+export type AuthProvider = "credentials" | "google" | "github";
 
 /**
- * Authenticated user information.
+ * Authentication status.
+ */
+export type AuthStatus = "authenticated" | "unauthenticated" | "loading";
+
+/**
+ * User roles.
+ */
+export type UserRole = "ADMIN" | "AUTHOR" | "USER";
+
+/**
+ * User permissions.
+ *
+ * These should align with your RBAC implementation.
+ */
+export type Permission =
+  | "posts:create"
+  | "posts:read"
+  | "posts:update"
+  | "posts:delete"
+  | "categories:create"
+  | "categories:update"
+  | "categories:delete"
+  | "comments:moderate"
+  | "users:manage"
+  | "dashboard:access";
+
+/**
+ * JWT payload.
+ */
+export interface JwtPayload {
+  readonly sub: ID;
+  readonly email: string;
+  readonly role: UserRole;
+  readonly permissions: readonly Permission[];
+  readonly iat?: number;
+  readonly exp?: number;
+}
+
+/**
+ * Authenticated user.
  */
 export interface AuthUser {
-  id: string;
-  name: string;
-  email: string;
-  role: UserRole;
-  avatar?: string;
+  readonly id: ID;
+  readonly name: string;
+  readonly email: string;
+  readonly image?: string | null;
+  readonly role: UserRole;
+  readonly permissions: readonly Permission[];
 }
 
 /**
- * User session stored after authentication.
- */
-export interface Session {
-  user: AuthUser;
-  expiresAt: string;
-}
-
-/**
- * Login form payload.
+ * Login credentials.
  */
 export interface LoginCredentials {
-  email: string;
-  password: string;
+  readonly email: string;
+  readonly password: string;
+  readonly rememberMe?: boolean;
 }
 
 /**
- * Authentication state returned by Server Actions.
+ * User registration.
  */
-export interface AuthState {
-  success: boolean;
-  message: string;
-  errors?: Partial<Record<keyof LoginCredentials, string>>;
+export interface RegisterCredentials {
+  readonly name: string;
+  readonly email: string;
+  readonly password: string;
+  readonly confirmPassword: string;
 }
 
 /**
- * Cookie payload used to persist authentication.
- *
- * In a production application this would typically
- * contain a signed or encrypted token instead of
- * the complete user object.
+ * Forgot password request.
  */
-export interface SessionCookie {
-  sessionId: string;
-  expiresAt: string;
+export interface ForgotPasswordRequest {
+  readonly email: string;
+}
+
+/**
+ * Password reset request.
+ */
+export interface ResetPasswordRequest {
+  readonly token: string;
+  readonly password: string;
+  readonly confirmPassword: string;
+}
+
+/**
+ * Email verification request.
+ */
+export interface VerifyEmailRequest {
+  readonly token: string;
+}
+
+/**
+ * Change password request.
+ */
+export interface ChangePasswordRequest {
+  readonly currentPassword: string;
+  readonly newPassword: string;
+  readonly confirmPassword: string;
+}
+
+/**
+ * Authentication session.
+ */
+export interface AuthSession {
+  readonly user: AuthUser;
+  readonly accessToken: string;
+  readonly refreshToken?: string;
+  readonly expiresAt: string;
+}
+
+/**
+ * Authentication tokens.
+ */
+export interface AuthTokens {
+  readonly accessToken: string;
+  readonly refreshToken: string;
+  readonly expiresIn: number;
+}
+
+/**
+ * Refresh token request.
+ */
+export interface RefreshTokenRequest {
+  readonly refreshToken: string;
 }

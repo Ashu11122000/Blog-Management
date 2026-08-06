@@ -6,15 +6,13 @@ import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
 import { Card, CardContent, CardFooter } from "@/components/common/Card";
 
-import type { Blog } from "@/types/blog";
+import type { Blog } from "@/types/post";
 
 interface BlogCardProps {
   blog: Blog;
 }
 
-export default function BlogCard({
-  blog,
-}: Readonly<BlogCardProps>) {
+export default function BlogCard({ blog }: Readonly<BlogCardProps>) {
   return (
     <Card
       className="
@@ -165,7 +163,6 @@ export default function BlogCard({
         <Link href={`/blog/${blog.slug}`}>
           <Button className="group/button">
             Read Article
-
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover/button:translate-x-1" />
           </Button>
         </Link>
