@@ -1,6 +1,6 @@
 "use server";
 
-import { contactSchema } from "@/lib/validations";
+import { contactSchema } from "@/validators";
 import type { ContactFormState } from "@/types/contact";
 
 /**
@@ -19,7 +19,7 @@ import type { ContactFormState } from "@/types/contact";
 
 export async function submitContactForm(
   _prevState: ContactFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<ContactFormState> {
   const values = {
     name: String(formData.get("name") ?? ""),
