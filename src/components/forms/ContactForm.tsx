@@ -3,12 +3,7 @@
 import { useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  CheckCircle2,
-  Mail,
-  Sparkles,
-  User,
-} from "lucide-react";
+import { CheckCircle2, Mail, Sparkles, User } from "lucide-react";
 
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
@@ -16,10 +11,7 @@ import Textarea from "@/components/common/Textarea";
 
 import { submitContactForm } from "@/actions/contact";
 
-import {
-  contactSchema,
-  type ContactSchema,
-} from "@/lib/validations";
+import { contactSchema, type ContactSchema } from "@/validators";
 
 import type { ContactFormState } from "@/types/contact";
 
@@ -52,7 +44,7 @@ const initialState: ContactFormState = {
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
-    initialState
+    initialState,
   );
 
   const {
@@ -82,7 +74,7 @@ export default function ContactForm() {
         "backdrop-blur-2xl",
         "shadow-2xl shadow-black/5",
         "transition-all duration-500",
-        "dark:shadow-black/30"
+        "dark:shadow-black/30",
       )}
     >
       {/* ============================================== */}
@@ -110,7 +102,7 @@ export default function ContactForm() {
               "border border-primary/20",
               "bg-primary/10",
               "px-4 py-2",
-              "text-primary"
+              "text-primary",
             )}
           >
             <Sparkles className="h-4 w-4" />
@@ -125,9 +117,9 @@ export default function ContactForm() {
           </h2>
 
           <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-            Have a question, project idea, feedback, or simply
-            want to say hello? Fill out the form below and
-            we&apos;ll get back to you as soon as possible.
+            Have a question, project idea, feedback, or simply want to say
+            hello? Fill out the form below and we&apos;ll get back to you as
+            soon as possible.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -153,17 +145,11 @@ export default function ContactForm() {
             className="flex items-center gap-2 text-sm font-semibold text-foreground"
           >
             <User className="h-4 w-4 text-primary" />
-
             Full Name
-
             <span className="text-red-500">*</span>
           </label>
 
-          <Input
-            id="name"
-            placeholder="John Doe"
-            {...register("name")}
-          />
+          <Input id="name" placeholder="John Doe" {...register("name")} />
 
           <p className="text-sm text-muted-foreground">
             Please enter your full name.
@@ -185,7 +171,7 @@ export default function ContactForm() {
           ))}
         </div>
 
-                {/* ============================================== */}
+        {/* ============================================== */}
         {/* Email */}
         {/* ============================================== */}
 
@@ -195,9 +181,7 @@ export default function ContactForm() {
             className="flex items-center gap-2 text-sm font-semibold text-foreground"
           >
             <Mail className="h-4 w-4 text-primary" />
-
             Email Address
-
             <span className="text-red-500">*</span>
           </label>
 
@@ -210,8 +194,7 @@ export default function ContactForm() {
           />
 
           <p className="text-sm text-muted-foreground">
-            We&apos;ll only use your email to respond to your
-            message.
+            We&apos;ll only use your email to respond to your message.
           </p>
 
           {errors.email && (
@@ -240,9 +223,7 @@ export default function ContactForm() {
             className="flex items-center gap-2 text-sm font-semibold text-foreground"
           >
             <Sparkles className="h-4 w-4 text-primary" />
-
             Subject
-
             <span className="text-red-500">*</span>
           </label>
 
@@ -283,9 +264,7 @@ export default function ContactForm() {
             className="flex items-center gap-2 text-sm font-semibold text-foreground"
           >
             <Mail className="h-4 w-4 text-primary" />
-
             Your Message
-
             <span className="text-red-500">*</span>
           </label>
 
@@ -298,8 +277,7 @@ export default function ContactForm() {
 
           <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
             <span>
-              Include as much detail as possible for a faster
-              response.
+              Include as much detail as possible for a faster response.
             </span>
 
             <span className="rounded-full bg-muted/40 px-3 py-1 text-xs font-medium">
@@ -327,7 +305,7 @@ export default function ContactForm() {
         {/* Status Message */}
         {/* Part 3 Starts Here */}
         {/* ============================================== */}
-                {/* ============================================== */}
+        {/* ============================================== */}
         {/* Status Message */}
         {/* ============================================== */}
 
@@ -348,7 +326,7 @@ export default function ContactForm() {
                     "bg-red-500/10",
                     "text-red-700",
                     "dark:text-red-400",
-                  ]
+                  ],
             )}
           >
             <div className="flex items-start gap-3">
@@ -357,7 +335,7 @@ export default function ContactForm() {
                   "mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl",
                   state.success
                     ? "bg-green-500/15 text-green-600 dark:text-green-400"
-                    : "bg-red-500/15 text-red-600 dark:text-red-400"
+                    : "bg-red-500/15 text-red-600 dark:text-red-400",
                 )}
               >
                 <CheckCircle2 className="h-5 w-5" />
@@ -370,9 +348,7 @@ export default function ContactForm() {
                     : "Unable to Send Message"}
                 </h3>
 
-                <p className="text-sm leading-6">
-                  {state.message}
-                </p>
+                <p className="text-sm leading-6">{state.message}</p>
               </div>
             </div>
           </div>
@@ -395,9 +371,9 @@ export default function ContactForm() {
             </h3>
 
             <p className="mt-1 text-sm leading-6 text-muted-foreground">
-              Your information is kept confidential and used
-              solely to respond to your inquiry. We never share
-              your personal information with third parties.
+              Your information is kept confidential and used solely to respond
+              to your inquiry. We never share your personal information with
+              third parties.
             </p>
           </div>
 
@@ -430,16 +406,15 @@ export default function ContactForm() {
               "shadow-lg shadow-blue-500/20",
               "transition-all duration-300",
               "hover:-translate-y-0.5",
-              "hover:shadow-xl hover:shadow-blue-500/30"
+              "hover:shadow-xl hover:shadow-blue-500/30",
             )}
           >
             {isPending ? "Sending Message..." : "Send Message"}
           </Button>
 
           <p className="text-center text-xs leading-6 text-muted-foreground">
-            By submitting this form, you agree to receive a
-            response regarding your inquiry. We respect your
-            privacy and will never send spam.
+            By submitting this form, you agree to receive a response regarding
+            your inquiry. We respect your privacy and will never send spam.
           </p>
         </div>
       </div>

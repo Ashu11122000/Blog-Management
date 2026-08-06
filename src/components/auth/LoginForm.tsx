@@ -22,10 +22,7 @@ import Input from "@/components/common/Input";
 
 import { ROUTES } from "@/constants/routes";
 
-import {
-  loginSchema,
-  type LoginSchema,
-} from "@/lib/validations";
+import { loginSchema, type LoginSchema } from "@/validators";
 
 import { cn } from "@/lib/utils";
 
@@ -55,8 +52,7 @@ export default function LoginForm() {
 
   const [serverError, setServerError] = useState("");
 
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -97,7 +93,7 @@ export default function LoginForm() {
         "backdrop-blur-2xl",
         "shadow-2xl shadow-black/5",
         "transition-all duration-500",
-        "dark:shadow-black/30"
+        "dark:shadow-black/30",
       )}
     >
       {/* ============================================== */}
@@ -125,7 +121,7 @@ export default function LoginForm() {
               "border border-primary/20",
               "bg-primary/10",
               "px-4 py-2",
-              "text-primary"
+              "text-primary",
             )}
           >
             <Sparkles className="h-4 w-4" />
@@ -140,30 +136,24 @@ export default function LoginForm() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-sm text-base leading-7 text-muted-foreground">
-            Sign in to access your dashboard,
-            manage content, publish articles,
+            Sign in to access your dashboard, manage content, publish articles,
             and continue where you left off.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-muted/40 px-4 py-2 text-sm text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-green-500" />
-
               Secure Authentication
             </div>
 
             <div className="inline-flex items-center gap-2 rounded-full bg-muted/40 px-4 py-2 text-sm text-muted-foreground">
               <CheckCircle2 className="h-4 w-4 text-primary" />
-
               Protected Dashboard
             </div>
           </div>
         </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-7"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
           {/* ============================================== */}
           {/* Email */}
           {/* ============================================== */}
@@ -171,9 +161,7 @@ export default function LoginForm() {
           <div className="space-y-3">
             <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
               <Mail className="h-4 w-4 text-primary" />
-
               Email Address
-
               <span className="text-red-500">*</span>
             </label>
 
@@ -187,21 +175,18 @@ export default function LoginForm() {
             />
 
             <p className="text-sm text-muted-foreground">
-              Enter the email associated with your
-              administrator account.
+              Enter the email associated with your administrator account.
             </p>
           </div>
 
-                    {/* ============================================== */}
+          {/* ============================================== */}
           {/* Password */}
           {/* ============================================== */}
 
           <div className="space-y-3">
             <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
               <Lock className="h-4 w-4 text-primary" />
-
               Password
-
               <span className="text-red-500">*</span>
             </label>
 
@@ -217,14 +202,8 @@ export default function LoginForm() {
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowPassword((previous) => !previous)
-                }
-                aria-label={
-                  showPassword
-                    ? "Hide password"
-                    : "Show password"
-                }
+                onClick={() => setShowPassword((previous) => !previous)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
                 className={cn(
                   "absolute right-4 top-[2.85rem]",
                   "flex h-9 w-9 items-center justify-center",
@@ -236,7 +215,7 @@ export default function LoginForm() {
                   "focus-visible:outline-none",
                   "focus-visible:ring-2",
                   "focus-visible:ring-primary/40",
-                  "active:scale-95"
+                  "active:scale-95",
                 )}
               >
                 {showPassword ? (
@@ -257,7 +236,7 @@ export default function LoginForm() {
                 className={cn(
                   "text-sm font-medium text-primary",
                   "transition-colors duration-300",
-                  "hover:text-primary/80"
+                  "hover:text-primary/80",
                 )}
               >
                 Forgot password?
@@ -277,7 +256,7 @@ export default function LoginForm() {
                 "bg-destructive/10",
                 "p-5",
                 "text-destructive",
-                "transition-all duration-300"
+                "transition-all duration-300",
               )}
             >
               <div className="flex items-start gap-3">
@@ -286,13 +265,9 @@ export default function LoginForm() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold">
-                    Authentication Failed
-                  </h3>
+                  <h3 className="font-semibold">Authentication Failed</h3>
 
-                  <p className="mt-1 text-sm leading-6">
-                    {serverError}
-                  </p>
+                  <p className="mt-1 text-sm leading-6">{serverError}</p>
                 </div>
               </div>
             </div>
@@ -312,12 +287,10 @@ export default function LoginForm() {
                 "shadow-lg shadow-blue-500/20",
                 "transition-all duration-300",
                 "hover:-translate-y-0.5",
-                "hover:shadow-xl hover:shadow-blue-500/30"
+                "hover:shadow-xl hover:shadow-blue-500/30",
               )}
             >
-              {isPending
-                ? "Signing In..."
-                : "Sign In to Dashboard"}
+              {isPending ? "Signing In..." : "Sign In to Dashboard"}
             </Button>
 
             <div className="flex items-center gap-3">
@@ -331,7 +304,7 @@ export default function LoginForm() {
             </div>
           </div>
 
-                    {/* ============================================== */}
+          {/* ============================================== */}
           {/* Demo Credentials */}
           {/* ============================================== */}
 
@@ -341,7 +314,7 @@ export default function LoginForm() {
               "border border-border/60",
               "bg-muted/30",
               "p-6",
-              "backdrop-blur-xl"
+              "backdrop-blur-xl",
             )}
           >
             <div className="mb-5 flex items-center gap-3">
@@ -350,13 +323,10 @@ export default function LoginForm() {
               </div>
 
               <div>
-                <h2 className="font-bold text-foreground">
-                  Demo Credentials
-                </h2>
+                <h2 className="font-bold text-foreground">Demo Credentials</h2>
 
                 <p className="text-sm text-muted-foreground">
-                  Use these credentials to explore the admin
-                  dashboard.
+                  Use these credentials to explore the admin dashboard.
                 </p>
               </div>
             </div>
@@ -368,7 +338,7 @@ export default function LoginForm() {
                   "rounded-2xl",
                   "border border-border/60",
                   "bg-background/60",
-                  "px-5 py-4"
+                  "px-5 py-4",
                 )}
               >
                 <div>
@@ -390,7 +360,7 @@ export default function LoginForm() {
                   "rounded-2xl",
                   "border border-border/60",
                   "bg-background/60",
-                  "px-5 py-4"
+                  "px-5 py-4",
                 )}
               >
                 <div>
@@ -398,9 +368,7 @@ export default function LoginForm() {
                     Password
                   </p>
 
-                  <p className="mt-1 font-medium text-foreground">
-                    admin123
-                  </p>
+                  <p className="mt-1 font-medium text-foreground">admin123</p>
                 </div>
 
                 <Lock className="h-5 w-5 text-primary" />
@@ -422,7 +390,7 @@ export default function LoginForm() {
                 "text-center",
                 "transition-all duration-300",
                 "hover:border-primary/30",
-                "hover:bg-muted/40"
+                "hover:bg-muted/40",
               )}
             >
               <ShieldCheck className="mx-auto h-6 w-6 text-primary" />
@@ -432,8 +400,8 @@ export default function LoginForm() {
               </h3>
 
               <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                Your authentication is protected using secure
-                server-side validation.
+                Your authentication is protected using secure server-side
+                validation.
               </p>
             </div>
 
@@ -446,7 +414,7 @@ export default function LoginForm() {
                 "text-center",
                 "transition-all duration-300",
                 "hover:border-primary/30",
-                "hover:bg-muted/40"
+                "hover:bg-muted/40",
               )}
             >
               <Sparkles className="mx-auto h-6 w-6 text-primary" />
@@ -456,8 +424,8 @@ export default function LoginForm() {
               </h3>
 
               <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                Built with Next.js, React 19, Tailwind CSS, and
-                modern best practices.
+                Built with Next.js, React 19, Tailwind CSS, and modern best
+                practices.
               </p>
             </div>
 
@@ -470,7 +438,7 @@ export default function LoginForm() {
                 "text-center",
                 "transition-all duration-300",
                 "hover:border-primary/30",
-                "hover:bg-muted/40"
+                "hover:bg-muted/40",
               )}
             >
               <CheckCircle2 className="mx-auto h-6 w-6 text-primary" />
@@ -480,8 +448,8 @@ export default function LoginForm() {
               </h3>
 
               <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                Optimized for accessibility, responsiveness,
-                and premium user experience.
+                Optimized for accessibility, responsiveness, and premium user
+                experience.
               </p>
             </div>
           </div>
@@ -492,9 +460,9 @@ export default function LoginForm() {
 
           <div className="pt-4">
             <p className="text-center text-xs leading-6 text-muted-foreground">
-              By signing in, you agree to continue using the
-              dashboard responsibly. This demo is intended for
-              evaluation and development purposes.
+              By signing in, you agree to continue using the dashboard
+              responsibly. This demo is intended for evaluation and development
+              purposes.
             </p>
           </div>
         </form>
