@@ -1,7 +1,7 @@
 import { authors } from "./authors";
 import { categories } from "./categories";
 
-import type { Blog } from "@/types/blog";
+import type { Blog } from "@/types/post";
 
 export const blogs: Blog[] = [
   {

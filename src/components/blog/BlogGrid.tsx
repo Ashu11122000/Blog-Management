@@ -1,15 +1,13 @@
 import BlogCard from "@/components/blog/BlogCard";
 import EmptyState from "@/components/common/EmptyState";
 
-import type { Blog } from "@/types/blog";
+import type { Blog } from "@/types/post";
 
 interface BlogGridProps {
   blogs: Blog[];
 }
 
-export default function BlogGrid({
-  blogs,
-}: Readonly<BlogGridProps>) {
+export default function BlogGrid({ blogs }: Readonly<BlogGridProps>) {
   if (blogs.length === 0) {
     return (
       <section className="py-16">
@@ -22,10 +20,7 @@ export default function BlogGrid({
   }
 
   return (
-    <section
-      aria-labelledby="blog-grid-heading"
-      className="space-y-8"
-    >
+    <section aria-labelledby="blog-grid-heading" className="space-y-8">
       {/* Editorial Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -70,10 +65,7 @@ export default function BlogGrid({
         "
       >
         {blogs.map((blog) => (
-          <BlogCard
-            key={blog.id}
-            blog={blog}
-          />
+          <BlogCard key={blog.id} blog={blog} />
         ))}
       </div>
     </section>

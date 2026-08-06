@@ -2,7 +2,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 import BlogGrid from "@/components/blog/BlogGrid";
 
-import type { Blog } from "@/types/blog";
+import type { Blog } from "@/types/post";
 
 type RelatedPostsProps = {
   currentBlogId: string;
@@ -18,8 +18,7 @@ export default function RelatedPosts({
   const relatedBlogs = blogs
     .filter(
       (blog) =>
-        blog.id !== currentBlogId &&
-        blog.category.slug === categorySlug,
+        blog.id !== currentBlogId && blog.category.slug === categorySlug,
     )
     .slice(0, 3);
 
@@ -58,9 +57,7 @@ export default function RelatedPosts({
               Recommended
             </p>
 
-            <p className="text-xs text-muted-foreground">
-              Articles to explore
-            </p>
+            <p className="text-xs text-muted-foreground">Articles to explore</p>
           </div>
 
           <ArrowRight className="ml-2 h-5 w-5 text-muted-foreground" />
